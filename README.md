@@ -11,7 +11,7 @@ Atuo principalmente com **Node.js/JavaScript**, construindo soluções **robusta
     <img src="https://img.shields.io/badge/-Instagram-%23E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram">
   </a>
   <a href="https://jcoder.com.br/joaop06" target="_blank">
-    Portifólio
+    <img src="https://img.shields.io/badge/-Portif%C3%B3lio-00B7E6?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Instagram">
   </a>
 </div>
 
