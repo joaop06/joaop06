@@ -1,4 +1,4 @@
-# Stack — João Pedro Borges
+# Stack — João Pedro Borges Araújo
 
 Lista canônica (sem competências inventadas).
 

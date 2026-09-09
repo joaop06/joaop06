@@ -1,4 +1,4 @@
-# Projetos — João Pedro Borges
+# Projetos — João Pedro Borges Araújo
 
 ## Imobil — Gestão Imobiliária
 

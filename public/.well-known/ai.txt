@@ -1,5 +1,5 @@
 {
-  "name": "João Pedro Borges",
+  "name": "João Pedro Borges Araújo",
   "description": "Software Engineer portfolio — see /llms.txt and /content/*.md",
   "url": "https://joaoborges-dev.vercel.app",
   "content_urls": [

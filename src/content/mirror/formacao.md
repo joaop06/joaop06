@@ -1,4 +1,4 @@
-# Formação e certificações — João Pedro Borges
+# Formação e certificações — João Pedro Borges Araújo
 
 ## Fatec Franca — Faculdade de Tecnologia “Dr. Thomaz Novelino”
 

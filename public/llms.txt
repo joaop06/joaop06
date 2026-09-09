@@ -1,4 +1,4 @@
-# João Pedro Borges
+# João Pedro Borges Araújo
 
 > Software Engineer · NestJS · Node.js · TypeScript
 > Site: https://joaoborges-dev.vercel.app
@@ -6,7 +6,7 @@
 
 ## Quem é
 
-João Pedro Borges Araújo (UI: João Pedro Borges) é Software Engineer em Franca, São Paulo, Brasil.
+João Pedro Borges Araújo é Software Engineer em Franca, São Paulo, Brasil.
 Especialidade: backend com JavaScript/Node.js — desenvolvimento e manutenção de soluções robustas e escaláveis.
 Experiência profissional **desde maio de 2023**. Aberto a **CLT** e **freelance**.
 

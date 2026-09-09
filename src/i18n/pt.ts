@@ -2,7 +2,7 @@
 export const pt = {
   meta: {
     title:
-      "João Pedro Borges — Software Engineer · NestJS · Node.js | Franca, SP",
+      "João Pedro Borges Araújo — Software Engineer · NestJS · Node.js | Franca, SP",
     description:
       "Software Engineer especializado em backend com NestJS, Node.js e TypeScript. APIs, integrações e sistemas internos — Franca, SP. Aberto a CLT e freelance. Desde maio de 2023.",
   },
@@ -38,7 +38,8 @@ export const pt = {
     schedule: "Agendar conversa",
   },
   hero: {
-    brand: "João Pedro Borges",
+    brand: "João Pedro Borges Araújo",
+    brandLines: ["João Pedro", "Borges Araújo"] as const,
     headline:
       "Software Engineer · NestJS · Node.js · JavaScript · TypeScript · TypeORM · Sequelize · MySQL · Firebird · RabbitMQ",
     support:
@@ -225,7 +226,7 @@ export const pt = {
     },
   },
   footer: {
-    rights: "João Pedro Borges",
+    rights: "João Pedro Borges Araújo",
     copyright: "Todos os direitos reservados.",
     location: "Franca, São Paulo, Brasil",
     cv: "Baixar CV",

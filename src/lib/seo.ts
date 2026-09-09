@@ -10,7 +10,9 @@ export const siteUrl = (
 ).replace(/\/$/, "");
 
 export const personName = "João Pedro Borges Araújo";
-export const brandName = "João Pedro Borges";
+export const brandName = "João Pedro Borges Araújo";
+/** Alias SEO curto (não é a marca principal da UI). */
+export const brandNameShort = "João Pedro Borges";
 export const jobTitle = "Software Engineer";
 
 export function absoluteUrl(path = "/"): string {
@@ -62,7 +64,7 @@ export function buildPersonJsonLd(locale: Locale) {
     "@type": "Person",
     "@id": `${localeHomeUrl(locale)}#person`,
     name: personName,
-    alternateName: brandName,
+    alternateName: brandNameShort,
     jobTitle,
     description: dict.meta.description,
     email: contact.email,
@@ -85,7 +87,7 @@ export function buildWebSiteJsonLd(locale: Locale) {
     "@type": "WebSite",
     "@id": `${localeHomeUrl(locale)}#website`,
     name: brandName,
-    alternateName: personName,
+    alternateName: brandNameShort,
     url: localeHomeUrl(locale),
     description: dict.meta.description,
     inLanguage: locale === "pt" ? "pt-BR" : "en",

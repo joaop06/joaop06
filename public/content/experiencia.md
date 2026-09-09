@@ -1,4 +1,4 @@
-# Experiência — João Pedro Borges
+# Experiência — João Pedro Borges Araújo
 
 Empregador: **Deltatec — Assistência Técnica** · Franca, SP  
 (Endereço da empresa omitido de propósito.)

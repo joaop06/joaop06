@@ -10,6 +10,7 @@ Regra crítica (§0): **nunca** animar o mesmo nó DOM com Motion e GSAP ao mesm
 | `[data-timeline-marker]` | CSS / JS | classes | Estado ativo via ScrollRuntime |
 | Nav links / progress dot | CSS | classes + event | `portfolio:section`; hover Motion ok no `<a>` |
 | CTAs hero `[data-motion-hover="cta"]` | Motion | `motion` | whileHover/whileTap apenas |
+| Título hero `#hero-brand` (spans por letra) | Motion | `motion` | Entrada mount (queda); **proibido** GSAP no mesmo nó |
 | Links de projetos `[data-motion-hover="project"]` | Motion | `motion` | escala/opacity sutis |
 | `ThemeToggle` / `LanguageSwitcher` | Motion | `motion` | microfeedback no botão |
 | Canvas hero 3D (`[data-hero-3d]`, F4/F5) | R3F | three / `@react-three/fiber` (+ drei / postprocessing) | Import diferido pós-interação/idle; wrapper DOM estático; `frameloop="always"` quando visível e `"never"` offscreen/`document.hidden`; qualidade via `useRenderTier`; GLB em `/models/hero/` |

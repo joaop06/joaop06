@@ -66,7 +66,7 @@ export default function EasterEggs({ copy }: EasterEggsProps) {
     if (EASTER_EGG_FLAGS.consoleHello) {
       // F3.15
       console.log(
-        "%cJoão Pedro Borges%c · NestJS / Node.js — recruters & devs welcome.",
+        "%cJoão Pedro Borges Araújo%c · NestJS / Node.js — recruters & devs welcome.",
         "font-weight:700;font-size:14px;color:#0f4c5c",
         "font-weight:400;font-size:12px;color:#5c5c5c",
       );
