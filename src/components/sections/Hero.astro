@@ -1,4 +1,5 @@
 ---
+import HeroCtas from "../motion/HeroCtas";
 import type { Dictionary, Locale } from "@/i18n";
 import { contact, whatsappScheduleUrl } from "@/data/contact";
 import { sectionHref } from "@/lib/sections";
@@ -16,6 +17,23 @@ const { locale, dict, hashContact, hashProjects } = Astro.props;
 const talkHref = sectionHref(locale, hashContact);
 const projectsHref = sectionHref(locale, hashProjects);
 const scheduleHref = whatsappScheduleUrl(dict.hero.whatsappMessage);
+
+const ctas = [
+  { href: talkHref, label: dict.cta.talk, variant: "primary" as const },
+  { href: projectsHref, label: dict.cta.projects, variant: "glass" as const },
+  {
+    href: contact.cvPath,
+    label: dict.cta.cv,
+    variant: "glass" as const,
+    download: true,
+  },
+  {
+    href: scheduleHref,
+    label: dict.cta.schedule,
+    variant: "glass" as const,
+    external: true,
+  },
+];
 ---
 
 <section
@@ -38,6 +56,7 @@ const scheduleHref = whatsappScheduleUrl(dict.hero.whatsappMessage);
       </p>
       <h1
         id="hero-brand"
+        data-egg-name
         class="font-display mt-3 text-4xl font-bold leading-[1.05] tracking-tight text-fg sm:text-5xl md:text-6xl"
       >
         {dict.hero.brand}
@@ -51,35 +70,7 @@ const scheduleHref = whatsappScheduleUrl(dict.hero.whatsappMessage);
         {dict.hero.support}
       </p>
 
-      <div class="mt-8 flex flex-wrap gap-3">
-        <a
-          href={talkHref}
-          class="inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity duration-[var(--dur-fast)] hover:opacity-90"
-        >
-          {dict.cta.talk}
-        </a>
-        <a
-          href={projectsHref}
-          class="glass inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-fg no-underline transition-colors duration-[var(--dur-fast)] hover:bg-accent-soft"
-        >
-          {dict.cta.projects}
-        </a>
-        <a
-          href={contact.cvPath}
-          download
-          class="glass inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-fg no-underline transition-colors duration-[var(--dur-fast)] hover:bg-accent-soft"
-        >
-          {dict.cta.cv}
-        </a>
-        <a
-          href={scheduleHref}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="glass inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-fg no-underline transition-colors duration-[var(--dur-fast)] hover:bg-accent-soft"
-        >
-          {dict.cta.schedule}
-        </a>
-      </div>
+      <HeroCtas client:visible items={ctas} />
     </div>
 
     {/* F2.5 — slot canvas 3D (Fase 4) */}

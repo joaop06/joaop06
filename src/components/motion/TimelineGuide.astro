@@ -1,0 +1,56 @@
+---
+import type { Locale } from "@/i18n";
+import { getSections } from "@/lib/sections";
+
+interface Props {
+  locale: Locale;
+  label: string;
+}
+
+const { locale, label } = Astro.props;
+const sections = getSections(locale);
+---
+
+{/* F3.3 — guia visual de timeline (linha + marcadores). Ownership: CSS + ScrollRuntime (GSAP progress). */}
+<aside
+  class="timeline-guide pointer-events-none fixed start-3 top-1/2 z-30 hidden h-[min(70vh,28rem)] w-3 -translate-y-1/2 md:block lg:start-5"
+  aria-label={label}
+>
+  <div
+    class="relative mx-auto h-full w-px overflow-hidden rounded-full bg-border-glass"
+    aria-hidden="true"
+  >
+    <div
+      data-timeline-progress
+      class="timeline-guide__progress absolute inset-x-0 top-0 h-full origin-top bg-accent"
+      style="transform: scaleY(0);"
+    >
+    </div>
+  </div>
+  <ol class="absolute inset-0 m-0 flex list-none flex-col justify-between p-0">
+    {
+      sections.map((section) => (
+        <li class="relative flex justify-center">
+          <span
+            data-timeline-marker={section.hash}
+            class="timeline-guide__marker size-2.5 rounded-md border border-border-glass bg-bg-elevated transition-[background-color,box-shadow,transform] duration-[var(--dur-mid)] ease-[var(--ease-out-expo)]"
+            title={section.hash}
+          />
+        </li>
+      ))
+    }
+  </ol>
+</aside>
+
+{/* F3.4 — barra de progresso no topo */}
+<div
+  class="pointer-events-none fixed inset-x-0 top-0 z-50 h-0.5 origin-left bg-transparent"
+  aria-hidden="true"
+>
+  <div
+    data-scroll-progress
+    class="h-full w-full origin-left bg-accent"
+    style="transform: scaleX(0);"
+  >
+  </div>
+</div>

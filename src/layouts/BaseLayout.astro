@@ -1,6 +1,9 @@
 ---
 import Footer from "../components/shell/Footer.astro";
 import Header from "../components/shell/Header.astro";
+import EasterEggs from "../components/motion/EasterEggs";
+import ScrollRuntime from "../components/motion/ScrollRuntime";
+import TimelineGuide from "../components/motion/TimelineGuide.astro";
 import { getDictionary, type Locale } from "../i18n";
 import "../styles/global.css";
 
@@ -71,9 +74,13 @@ const alternatePath = `/${alternateLang}`;
   <body class="bg-bg text-fg">
     <a class="skip-link" href="#conteudo">{dict.a11y.skipToContent}</a>
     <Header locale={lang} dict={dict} />
+    <TimelineGuide locale={lang} label={dict.motion.timelineLabel} />
     <main id="conteudo">
       <slot />
     </main>
     <Footer locale={lang} dict={dict} />
+    <!-- F3: scroll runtime (Lenis/GSAP) — client:load mínimo -->
+    <ScrollRuntime client:load locale={lang} />
+    <EasterEggs client:idle copy={dict.eggs} />
   </body>
 </html>

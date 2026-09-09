@@ -155,4 +155,56 @@
     scroll-margin-top: 5rem;
     padding-block: 4rem;
   }
+
+  /* F3.3 — marcadores da timeline */
+  .timeline-guide__marker.is-active {
+    background: var(--accent);
+    box-shadow: 0 0 0 4px var(--accent-soft);
+    transform: scale(1.15);
+  }
+
+  .timeline-guide__progress {
+    will-change: transform;
+  }
+
+  /* F3.11 — konami: accent soft glow no fundo */
+  html[data-egg-konami="true"] body {
+    box-shadow: inset 0 0 120px var(--glow);
+  }
+
+  html[data-egg-konami="true"] {
+    --accent: #1a6b7c;
+  }
+
+  html[data-theme="dark"][data-egg-konami="true"] {
+    --accent: #7ec9d6;
+  }
+
+  /* F3.16 — matrix leve */
+  .egg-matrix__col {
+    position: absolute;
+    top: -20%;
+    writing-mode: vertical-rl;
+    animation: egg-matrix-fall 9s linear infinite;
+    opacity: 0.55;
+  }
+
+  @keyframes egg-matrix-fall {
+    from {
+      transform: translateY(-10%);
+    }
+    to {
+      transform: translateY(120vh);
+    }
+  }
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+html.lenis {
+  overflow-x: clip;
 }

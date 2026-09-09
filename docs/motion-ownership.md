@@ -1,0 +1,22 @@
+# Motion ownership map (F3.9)
+
+Regra crítica (§0): **nunca** animar o mesmo nó DOM com Motion e GSAP ao mesmo tempo.
+
+| Elemento / seletor | Owner | Biblioteca | Notas |
+|--------------------|-------|------------|--------|
+| `html` / viewport scroll | Lenis | `lenis` | Smooth scroll; desligado se `prefers-reduced-motion` |
+| `[data-chapter]` (wrappers de seção) | GSAP | `gsap` + ScrollTrigger | Entrada opacity/y; **proibido** Motion |
+| `[data-timeline-progress]` | GSAP / CSS | ScrollTrigger + style | Altura da linha de progresso |
+| `[data-timeline-marker]` | CSS / JS | classes | Estado ativo via ScrollRuntime |
+| Nav links / progress dot | CSS | classes + event | `portfolio:section`; hover Motion ok no `<a>` |
+| CTAs hero `[data-motion-hover="cta"]` | Motion | `motion` | whileHover/whileTap apenas |
+| Links de projetos `[data-motion-hover="project"]` | Motion | `motion` | escala/opacity sutis |
+| `ThemeToggle` / `LanguageSwitcher` | Motion | `motion` | microfeedback no botão |
+| Canvas hero 3D (Fase 4) | R3F | three | Isolado; não disputar transform CSS do wrapper |
+| Easter eggs overlays | Motion ou CSS | isolados | Nós próprios; sem GSAP no mesmo nó |
+
+## Convenções
+
+- GSAP: ownership de scroll/timeline de seções (`data-chapter`).
+- Motion: hover, focus, mount/unmount de islands isoladas.
+- CSS: tema, glass, transitions de cor, foco `:focus-visible`.

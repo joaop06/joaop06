@@ -189,5 +189,27 @@ export const pt = {
   shell: {
     placeholder: "Conteúdo em breve",
   },
+  motion: {
+    timelineLabel: "Progresso da timeline",
+  },
+  eggs: {
+    konamiToast: "Modo integração ativado — teal no máximo por alguns segundos.",
+    terminalTitle: "$ whoami",
+    terminalBody:
+      "joao@borges:~$ Software Engineer · NestJS / Node.js\nsince may 2023 · Franca, SP · open to CLT & freelance",
+    terminalClose: "exit",
+    shortcutsTitle: "Atalhos",
+    shortcutsDescription: "Navegação rápida e easter eggs. Esc fecha este painel.",
+    shortcutsClose: "Fechar",
+    shortcuts: [
+      { keys: "?", action: "Abrir esta lista de atalhos" },
+      { keys: "Esc", action: "Fechar overlays" },
+      { keys: "#contato", action: "Ir para Contato" },
+      { keys: "#projetos", action: "Ir para Projetos" },
+      { keys: "Konami", action: "Surpresa visual temporária" },
+    ],
+    nestFavorite: "favorite stack ★ NestJS",
+    coffeeToast: "Café virtual servido. Obrigado por explorar.",
+  },
   hello: "Olá",
 } as const;

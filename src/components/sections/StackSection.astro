@@ -38,6 +38,7 @@ const { dict, hash } = Astro.props;
                   ];
                 return (
                   <li
+                    data-egg-nest={item.id === "nestjs" ? "" : undefined}
                     class:list={[
                       "flex items-center gap-3 px-3 py-3",
                       item.featured

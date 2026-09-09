@@ -1,4 +1,5 @@
 import { Languages } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import type { Locale } from "@/i18n";
 import { Icon } from "@/components/ui/Icon";
 import {
@@ -19,21 +20,26 @@ const options: { locale: Locale; href: string; name: string }[] = [
   { locale: "en", href: "/en", name: "English" },
 ];
 
-/** Seletor de idioma (F1.9). */
+/** Seletor de idioma (F1.9) + microfeedback Motion (F3.8). */
 export default function LanguageSwitcher({
   locale,
   label,
 }: LanguageSwitcherProps) {
+  const reduce = useReducedMotion();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <button
+        <motion.button
           type="button"
           className="inline-flex size-10 items-center justify-center rounded-xl text-fg transition-colors duration-[var(--dur-fast)] hover:bg-accent-soft"
           aria-label={label}
+          whileTap={reduce ? undefined : { scale: 0.9 }}
+          whileHover={reduce ? undefined : { scale: 1.06 }}
+          transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
           <Icon icon={Languages} className="size-5" />
-        </button>
+        </motion.button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuLabel>{label}</DropdownMenuLabel>

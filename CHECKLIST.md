@@ -498,32 +498,32 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Tasks — Fundação scroll
 
-- [ ] **F3.1** Inicializar Lenis no layout client island (`client:load` mínimo necessário).
-- [ ] **F3.2** Integrar Lenis ↔ GSAP ScrollTrigger (atualizar ScrollTrigger no `lenis.on('scroll')`; `ScrollTrigger.refresh` após fontes/imagens).
-- [ ] **F3.3** Guia visual de timeline (linha + marcadores por seção) sincronizada ao scroll.
-- [ ] **F3.4** Indicador de progresso (ex.: barra ou ponto ativo no nav).
-- [ ] **F3.5** Entrada de capítulos via GSAP (opacity/y ou clip) — **sem** Motion no mesmo elemento.
-- [ ] **F3.6** Deep link `#secao`: após load, scroll Lenis até o alvo sem “pulo” feio.
+- [x] **F3.1** Inicializar Lenis no layout client island (`client:load` mínimo necessário).
+- [x] **F3.2** Integrar Lenis ↔ GSAP ScrollTrigger (atualizar ScrollTrigger no `lenis.on('scroll')`; `ScrollTrigger.refresh` após fontes/imagens).
+- [x] **F3.3** Guia visual de timeline (linha + marcadores por seção) sincronizada ao scroll.
+- [x] **F3.4** Indicador de progresso (ex.: barra ou ponto ativo no nav).
+- [x] **F3.5** Entrada de capítulos via GSAP (opacity/y ou clip) — **sem** Motion no mesmo elemento.
+- [x] **F3.6** Deep link `#secao`: após load, scroll Lenis até o alvo sem “pulo” feio.
 
 #### Tasks — Motion (micro)
 
-- [ ] **F3.7** Hover em links/CTAs/projetos com Motion (escala/opacity sutis).
-- [ ] **F3.8** Toggle tema e seletor idioma com microfeedback Motion.
-- [ ] **F3.9** Documentar mapa “elemento → owner” (GSAP | Motion | CSS) em comentário ou `docs/motion-ownership.md` interno (pode ser seção anexa no repo depois; no mínimo comentários no código).
+- [x] **F3.7** Hover em links/CTAs/projetos com Motion (escala/opacity sutis).
+- [x] **F3.8** Toggle tema e seletor idioma com microfeedback Motion.
+- [x] **F3.9** Documentar mapa “elemento → owner” (GSAP | Motion | CSS) em comentário ou `docs/motion-ownership.md` interno (pode ser seção anexa no repo depois; no mínimo comentários no código).
 
 #### Tasks — Reduced motion
 
-- [ ] **F3.10** Se `prefers-reduced-motion: reduce`: desabilitar Lenis smooth e timelines GSAP; seções estáticas; micro Motion off.
+- [x] **F3.10** Se `prefers-reduced-motion: reduce`: desabilitar Lenis smooth e timelines GSAP; seções estáticas; micro Motion off.
 
 #### Tasks — Easter eggs (implementar vários; curadoria depois)
 
-- [ ] **F3.11** Konami code → mensagem/tema temporário ou trilha visual discreta.
-- [ ] **F3.12** Clique repetido no nome (N vezes) → terminal ASCII mínimo com bio one-liner.
-- [ ] **F3.13** Atalho teclado `?` → overlay de atalhos (a11y: focável, Esc fecha, Radix Dialog).
-- [ ] **F3.14** Hover longo no logo Nest da stack → tooltip “favorite stack” animado.
-- [ ] **F3.15** Console `console.log` estilizado de boas-vindas a recrutadores/devs.
-- [ ] **F3.16** Hash secreto `#matrix` ou `#coffee` → easter visual leve (sem derrubar perf).
-- [ ] **F3.17** Lista no README ou comentário `EASTER_EGGS` para o autor desligar/deixar mais discreto depois.
+- [x] **F3.11** Konami code → mensagem/tema temporário ou trilha visual discreta.
+- [x] **F3.12** Clique repetido no nome (N vezes) → terminal ASCII mínimo com bio one-liner.
+- [x] **F3.13** Atalho teclado `?` → overlay de atalhos (a11y: focável, Esc fecha, Radix Dialog).
+- [x] **F3.14** Hover longo no logo Nest da stack → tooltip “favorite stack” animado.
+- [x] **F3.15** Console `console.log` estilizado de boas-vindas a recrutadores/devs.
+- [x] **F3.16** Hash secreto `#matrix` ou `#coffee` → easter visual leve (sem derrubar perf).
+- [x] **F3.17** Lista no README ou comentário `EASTER_EGGS` para o autor desligar/deixar mais discreto depois.
 
 #### Critérios de aceite
 
@@ -534,7 +534,7 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Done
 
-- [ ] Fase 3 concluída
+- [x] Fase 3 concluída
 
 ---
 

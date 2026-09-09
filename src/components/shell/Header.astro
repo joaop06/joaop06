@@ -1,4 +1,5 @@
 ---
+import DesktopNav from "../motion/DesktopNav";
 import LanguageSwitcher from "./LanguageSwitcher";
 import MobileNav from "./MobileNav";
 import ThemeToggle from "./ThemeToggle";
@@ -30,27 +31,13 @@ const links = sections.map((section) => ({
   >
     <a
       href={sectionHref(locale, homeHash)}
+      data-egg-name
       class="font-display text-lg font-bold tracking-tight text-fg no-underline md:text-xl"
     >
       João Pedro Borges
     </a>
 
-    <nav class="hidden md:block" aria-label={dict.a11y.mainNav}>
-      <ul class="flex items-center gap-1">
-        {
-          links.map((link) => (
-            <li>
-              <a
-                href={link.href}
-                class="rounded-xl px-3 py-2 text-sm text-fg-muted no-underline transition-colors duration-[var(--dur-fast)] hover:bg-accent-soft hover:text-fg"
-              >
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <DesktopNav client:load links={links} navLabel={dict.a11y.mainNav} />
 
     <div class="flex items-center gap-1">
       <LanguageSwitcher client:load locale={locale} label={dict.a11y.language} />

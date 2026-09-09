@@ -1,4 +1,5 @@
 import { Moon, Sun } from "lucide-react";
+import { motion, useReducedMotion } from "motion/react";
 import { useEffect, useState } from "react";
 import { Icon } from "@/components/ui/Icon";
 
@@ -25,13 +26,14 @@ function applyTheme(theme: Theme) {
   }
 }
 
-/** Toggle claro/escuro com persistência (F1.4). */
+/** Toggle claro/escuro (F1.4) + microfeedback Motion (F3.8). */
 export default function ThemeToggle({
   label,
   labelLight,
   labelDark,
 }: ThemeToggleProps) {
   const [theme, setTheme] = useState<Theme>("light");
+  const reduce = useReducedMotion();
 
   useEffect(() => {
     setTheme(readTheme());
@@ -41,11 +43,14 @@ export default function ThemeToggle({
   const actionLabel = next === "light" ? labelLight : labelDark;
 
   return (
-    <button
+    <motion.button
       type="button"
       className="inline-flex size-10 items-center justify-center rounded-xl text-fg transition-colors duration-[var(--dur-fast)] hover:bg-accent-soft"
       aria-label={`${label}: ${actionLabel}`}
       title={actionLabel}
+      whileTap={reduce ? undefined : { scale: 0.9, rotate: theme === "dark" ? -12 : 12 }}
+      whileHover={reduce ? undefined : { scale: 1.06 }}
+      transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
       onClick={() => {
         applyTheme(next);
         setTheme(next);
@@ -56,6 +61,6 @@ export default function ThemeToggle({
       ) : (
         <Icon icon={Moon} className="size-5" />
       )}
-    </button>
+    </motion.button>
   );
 }
