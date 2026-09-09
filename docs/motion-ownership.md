@@ -12,7 +12,7 @@ Regra crítica (§0): **nunca** animar o mesmo nó DOM com Motion e GSAP ao mesm
 | CTAs hero `[data-motion-hover="cta"]` | Motion | `motion` | whileHover/whileTap apenas |
 | Links de projetos `[data-motion-hover="project"]` | Motion | `motion` | escala/opacity sutis |
 | `ThemeToggle` / `LanguageSwitcher` | Motion | `motion` | microfeedback no botão |
-| Canvas hero 3D (`[data-hero-3d]`, F4) | R3F | three / `@react-three/fiber` | Só a cena Three gira; wrapper DOM estático (sem Motion/GSAP) |
+| Canvas hero 3D (`[data-hero-3d]`, F4/F5) | R3F | three / `@react-three/fiber` | Import diferido pós-interação/idle; wrapper DOM estático; `frameloop="demand"` |
 | Fallback SVG hero (`HeroFallback`) | CSS/SVG | — | reduced-motion / sem WebGL; sem animação JS |
 | Easter eggs overlays | Motion ou CSS | isolados | Nós próprios; sem GSAP no mesmo nó |
 

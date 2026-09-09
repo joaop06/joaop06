@@ -4,6 +4,8 @@ export type ProjectItem = {
   id: string;
   url: string;
   thumb: string;
+  thumbWidth: number | string;
+  thumbHeight: number | string;
   name: string;
   description: string;
   visitLabel: string;
@@ -30,10 +32,11 @@ export default function ProjectsList({ items }: ProjectsListProps) {
             <img
               src={project.thumb}
               alt=""
-              width={160}
-              height={100}
+              width={project.thumbWidth}
+              height={project.thumbHeight}
               className="aspect-[16/10] w-full max-w-[160px] rounded-xl object-cover"
               loading="lazy"
+              decoding="async"
             />
             <div className="min-w-0 flex-1">
               <h3 className="font-display m-0 text-lg font-semibold text-fg">

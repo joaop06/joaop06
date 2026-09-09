@@ -58,7 +58,7 @@ const channels = [
     <div class="mt-8 flex flex-wrap gap-3">
       <a
         href={`#${hash}`}
-        class="inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white no-underline"
+        class="inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-on-accent no-underline"
       >
         {dict.cta.talk}
       </a>
@@ -92,6 +92,6 @@ const channels = [
       }
     </ul>
 
-    <ContactForm client:load labels={dict.contact.form} />
+    <ContactForm client:visible labels={dict.contact.form} />
   </div>
 </section>

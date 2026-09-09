@@ -255,7 +255,7 @@ export default function EasterEggs({ copy }: EasterEggsProps) {
             <DialogClose asChild>
               <button
                 type="button"
-                className="mt-4 rounded-xl bg-accent px-3 py-2 text-xs font-medium text-white"
+                className="mt-4 rounded-xl bg-accent px-3 py-2 text-xs font-medium text-on-accent"
               >
                 {copy.terminalClose}
               </button>

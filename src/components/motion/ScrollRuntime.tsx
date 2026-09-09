@@ -1,7 +1,8 @@
 /**
  * F3.1–F3.6 / F3.10 — Lenis + GSAP ScrollTrigger + timeline + deep link.
- * Ownership: este módulo controla scroll e `[data-chapter]` (GSAP).
- * Não aplicar Motion em nós com `data-chapter`. Ver docs/motion-ownership.md.
+ * F5.2 — imports tree-shakeable; registerPlugin uma vez no módulo.
+ * F5.9 — um listener de scroll; maxScroll cacheado (sem thrashing).
+ * Ownership: scroll e `[data-chapter]` (GSAP). Ver docs/motion-ownership.md.
  */
 import { useEffect } from "react";
 import Lenis from "lenis";
@@ -19,6 +20,14 @@ type ScrollRuntimeProps = {
 
 const HEADER_OFFSET = -80;
 
+/** F5.2 — registrar ScrollTrigger uma vez por carga de módulo. */
+let scrollTriggerRegistered = false;
+function ensureScrollTrigger() {
+  if (scrollTriggerRegistered) return;
+  gsap.registerPlugin(ScrollTrigger);
+  scrollTriggerRegistered = true;
+}
+
 function readHash(): string {
   return window.location.hash.replace(/^#/, "");
 }
@@ -30,6 +39,10 @@ function findSectionTriggers(locale: Locale) {
       return el ? { ...section, el } : null;
     })
     .filter((s): s is NonNullable<typeof s> => s !== null);
+}
+
+function computeMaxScroll(): number {
+  return Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
 }
 
 export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
@@ -46,18 +59,24 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
     );
     const barEl = document.querySelector<HTMLElement>("[data-scroll-progress]");
 
-    const setActive = (id: SectionId, hash: string, progress: number) => {
+    let maxScroll = computeMaxScroll();
+    let activeHash = sections[0]?.hash ?? "";
+
+    const paintProgress = (progress: number) => {
+      const p = Math.min(1, Math.max(0, progress));
+      if (progressEl) progressEl.style.transform = `scaleY(${p})`;
+      if (barEl) barEl.style.transform = `scaleX(${p})`;
+    };
+
+    const setActiveSection = (id: SectionId, hash: string) => {
+      if (hash === activeHash) return;
+      activeHash = hash;
       for (const marker of markers) {
         const active = marker.dataset.timelineMarker === hash;
         marker.classList.toggle("is-active", active);
         marker.setAttribute("aria-current", active ? "true" : "false");
       }
-      if (progressEl) {
-        progressEl.style.transform = `scaleY(${Math.min(1, Math.max(0, progress))})`;
-      }
-      if (barEl) {
-        barEl.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
-      }
+      const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
       dispatchSectionChange({ id, hash, progress });
     };
 
@@ -70,10 +89,7 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
         if (!visible?.target.id) return;
         const match = sections.find((s) => s.hash === visible.target.id);
         if (!match) return;
-        const doc = document.documentElement;
-        const maxScroll = doc.scrollHeight - window.innerHeight;
-        const progress = maxScroll > 0 ? window.scrollY / maxScroll : 0;
-        setActive(match.id, match.hash, progress);
+        setActiveSection(match.id, match.hash);
       },
       { rootMargin: "-35% 0px -45% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] },
     );
@@ -84,20 +100,32 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
     }
 
     if (sections[0]) {
-      setActive(sections[0].id, sections[0].hash, 0);
+      setActiveSection(sections[0].id, sections[0].hash);
+      paintProgress(0);
+      dispatchSectionChange({
+        id: sections[0].id,
+        hash: sections[0].hash,
+        progress: 0,
+      });
     }
 
     if (reduced) {
-      // F3.10: sem Lenis smooth / timelines GSAP; seções estáticas
       const hash = readHash();
       if (hash && !SECRET_HASHES.has(hash)) {
         const target = document.getElementById(hash);
         target?.scrollIntoView({ behavior: "auto", block: "start" });
       }
-      return () => io.disconnect();
+      const onResizeReduced = () => {
+        maxScroll = computeMaxScroll();
+      };
+      window.addEventListener("resize", onResizeReduced);
+      return () => {
+        io.disconnect();
+        window.removeEventListener("resize", onResizeReduced);
+      };
     }
 
-    gsap.registerPlugin(ScrollTrigger);
+    ensureScrollTrigger();
 
     const lenis = new Lenis({
       lerp: 0.09,
@@ -105,8 +133,6 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
       anchors: false,
       syncTouch: false,
     });
-
-    lenis.on("scroll", ScrollTrigger.update);
 
     const tick = (time: number) => {
       lenis.raf(time * 1000);
@@ -116,7 +142,6 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
 
     const chapterTweens: gsap.core.Tween[] = [];
     for (const section of sections) {
-      // Hero (primeiro) entra estático; demais capítulos animam
       if (section.id === "home") continue;
       const tween = gsap.from(section.el, {
         autoAlpha: 0,
@@ -133,16 +158,11 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
       chapterTweens.push(tween);
     }
 
+    // F5.9 — um único handler: ScrollTrigger + progress via transform
     const onLenisScroll = () => {
-      const doc = document.documentElement;
-      const maxScroll = doc.scrollHeight - window.innerHeight;
+      ScrollTrigger.update();
       const progress = maxScroll > 0 ? lenis.scroll / maxScroll : 0;
-      if (progressEl) {
-        progressEl.style.transform = `scaleY(${Math.min(1, Math.max(0, progress))})`;
-      }
-      if (barEl) {
-        barEl.style.transform = `scaleX(${Math.min(1, Math.max(0, progress))})`;
-      }
+      paintProgress(progress);
     };
     lenis.on("scroll", onLenisScroll);
 
@@ -157,7 +177,6 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
       });
     };
 
-    // F3.6 — deep link após load (sem pulo feio)
     const initialHash = readHash();
     let deepLinkFrame = 0;
     if (initialHash && !SECRET_HASHES.has(initialHash)) {
@@ -185,20 +204,25 @@ export default function ScrollRuntime({ locale }: ScrollRuntimeProps) {
       scrollToHash(readHash());
     };
 
+    const refreshMetrics = () => {
+      maxScroll = computeMaxScroll();
+      ScrollTrigger.refresh();
+    };
+
     document.addEventListener("click", onClick);
     window.addEventListener("hashchange", onHashChange);
-
-    const refresh = () => ScrollTrigger.refresh();
-    void document.fonts.ready.then(refresh);
-    window.addEventListener("load", refresh);
-    const refreshTimer = window.setTimeout(refresh, 400);
+    window.addEventListener("resize", refreshMetrics);
+    void document.fonts.ready.then(refreshMetrics);
+    window.addEventListener("load", refreshMetrics);
+    const refreshTimer = window.setTimeout(refreshMetrics, 400);
 
     return () => {
       cancelAnimationFrame(deepLinkFrame);
       window.clearTimeout(refreshTimer);
       document.removeEventListener("click", onClick);
       window.removeEventListener("hashchange", onHashChange);
-      window.removeEventListener("load", refresh);
+      window.removeEventListener("resize", refreshMetrics);
+      window.removeEventListener("load", refreshMetrics);
       io.disconnect();
       for (const tween of chapterTweens) tween.kill();
       ScrollTrigger.getAll().forEach((st) => st.kill());

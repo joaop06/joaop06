@@ -13,7 +13,9 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "analyze": "ANALYZE=1 astro build",
+    "lighthouse": "lighthouse http://127.0.0.1:4321/pt --chrome-flags='--headless --no-sandbox' --output=json --output-path=./lighthouse-report.json --quiet"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",
@@ -49,8 +51,10 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-astro": "^3.1.0",
     "globals": "^17.12.0",
+    "lighthouse": "^13.4.1",
     "prettier": "3.9.6",
     "prettier-plugin-astro": "1.0.0",
+    "rollup-plugin-visualizer": "^7.1.1",
     "typescript-eslint": "^8.70.0"
   }
 }

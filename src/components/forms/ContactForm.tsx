@@ -177,7 +177,7 @@ export function ContactForm({ labels }: ContactFormProps) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="inline-flex w-fit items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white no-underline transition-opacity duration-[var(--dur-fast)] hover:opacity-90 disabled:opacity-60"
+        className="inline-flex w-fit items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-on-accent no-underline transition-opacity duration-[var(--dur-fast)] hover:opacity-90 disabled:opacity-60"
       >
         {isSubmitting ? labels.sending : labels.submit}
       </button>

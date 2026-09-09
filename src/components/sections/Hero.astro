@@ -71,10 +71,10 @@ const ctas = [
         {dict.hero.support}
       </p>
 
-      <HeroCtas client:visible items={ctas} />
+      <HeroCtas client:idle items={ctas} />
     </div>
 
-    {/* F4 — Órbita de Integrações (R3F); wrapper sem Motion/GSAP */}
+    {/* F4/F5 — Órbita; idle + import diferido do Three (F5.3) */}
     <div
       class="glass relative aspect-[4/3] w-full min-h-[220px] overflow-hidden lg:min-h-[320px]"
       data-hero-3d-slot
@@ -84,7 +84,7 @@ const ctas = [
         aria-hidden="true"
       >
       </div>
-      <HeroScene client:visible label={dict.a11y.heroVisual} />
+      <HeroScene client:idle label={dict.a11y.heroVisual} />
     </div>
   </div>
 </section>

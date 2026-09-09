@@ -1,15 +1,24 @@
 /**
- * Canvas R3F do hero (F4.4–F4.6).
- * Importado dinamicamente por HeroScene — three/R3F fora do bundle crítico (F4.5).
- * Pausar render offscreen via frameloop (F4.6); cena permanece montada (F4.9).
+ * Canvas R3F do hero (F4.4–F4.6 / F5.9).
+ * frameloop demand + invalidate ~20fps quando visível (evita main-thread thrash).
  */
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 import { OrbitScene } from "./OrbitScene";
 
 type OrbitCanvasProps = {
   className?: string;
 };
+
+function FramePacer({ active }: { active: boolean }) {
+  const invalidate = useThree((s) => s.invalidate);
+  useEffect(() => {
+    if (!active) return;
+    const id = window.setInterval(() => invalidate(), 50);
+    return () => window.clearInterval(id);
+  }, [active, invalidate]);
+  return null;
+}
 
 export default function OrbitCanvas({ className }: OrbitCanvasProps) {
   const hostRef = useRef<HTMLDivElement>(null);
@@ -31,10 +40,10 @@ export default function OrbitCanvas({ className }: OrbitCanvasProps) {
   return (
     <div ref={hostRef} className={className}>
       <Canvas
-        dpr={[1, 1.5]}
-        frameloop={visible ? "always" : "never"}
+        dpr={[1, 1.25]}
+        frameloop="demand"
         gl={{
-          antialias: true,
+          antialias: false,
           alpha: true,
           powerPreference: "high-performance",
           stencil: false,
@@ -47,6 +56,7 @@ export default function OrbitCanvas({ className }: OrbitCanvasProps) {
           scene.background = null;
         }}
       >
+        <FramePacer active={visible} />
         <OrbitScene />
       </Canvas>
     </div>

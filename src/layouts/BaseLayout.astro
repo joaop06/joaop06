@@ -19,7 +19,9 @@ const title = Astro.props.title ?? dict.meta.title;
 const description = Astro.props.description ?? dict.meta.description;
 const htmlLang = lang === "pt" ? "pt-BR" : "en";
 const alternateLang = lang === "pt" ? "en" : "pt";
-const alternatePath = `/${alternateLang}`;
+const site = Astro.site?.href.replace(/\/$/, "") ?? "https://joaoborges-dev.vercel.app";
+const selfUrl = `${site}/${lang}`;
+const alternateUrl = `${site}/${alternateLang}`;
 ---
 
 <!doctype html>
@@ -30,25 +32,28 @@ const alternatePath = `/${alternateLang}`;
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" hreflang={htmlLang} href={`/${lang}`} />
+    <link rel="alternate" hreflang={htmlLang} href={selfUrl} />
     <link
       rel="alternate"
       hreflang={alternateLang === "pt" ? "pt-BR" : "en"}
-      href={alternatePath}
+      href={alternateUrl}
     />
-    <link rel="canonical" href={`https://joaoborges-dev.vercel.app/${lang}`} />
-    <!-- F1.2 fontes -->
-    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
-    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="alternate" hreflang="x-default" href={`${site}/pt`} />
+    <link rel="canonical" href={selfUrl} />
+    <!-- F5.5 — preload só pesos críticos de first paint -->
     <link
-      href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&f[]=general-sans@400,500&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/satoshi-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <link
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      rel="preload"
+      href="/fonts/general-sans-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
     />
     <!-- F1.4 anti-FOUC: tema antes da pintura -->
     <script is:inline>
@@ -79,8 +84,8 @@ const alternatePath = `/${alternateLang}`;
       <slot />
     </main>
     <Footer locale={lang} dict={dict} />
-    <!-- F3: scroll runtime (Lenis/GSAP) — client:load mínimo -->
-    <ScrollRuntime client:load locale={lang} />
+    <!-- F5: Lenis/GSAP em idle — HTML/timeline SSR primeiro (FCP) -->
+    <ScrollRuntime client:idle locale={lang} />
     <EasterEggs client:idle copy={dict.eggs} />
   </body>
 </html>

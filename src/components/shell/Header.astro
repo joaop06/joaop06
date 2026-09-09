@@ -1,8 +1,5 @@
 ---
-import DesktopNav from "../motion/DesktopNav";
-import LanguageSwitcher from "./LanguageSwitcher";
-import MobileNav from "./MobileNav";
-import ThemeToggle from "./ThemeToggle";
+import HeaderActions from "./HeaderActions";
 import type { Dictionary, Locale } from "@/i18n";
 import { getSections, sectionHref, type SectionId } from "@/lib/sections";
 
@@ -37,23 +34,19 @@ const links = sections.map((section) => ({
       João Pedro Borges
     </a>
 
-    <DesktopNav client:load links={links} navLabel={dict.a11y.mainNav} />
-
-    <div class="flex items-center gap-1">
-      <LanguageSwitcher client:load locale={locale} label={dict.a11y.language} />
-      <ThemeToggle
-        client:load
-        label={dict.a11y.themeToggle}
-        labelLight={dict.a11y.switchToLight}
-        labelDark={dict.a11y.switchToDark}
-      />
-      <MobileNav
-        client:load
-        links={links}
-        menuLabel={dict.a11y.mobileNav}
-        openLabel={dict.a11y.openMenu}
-        closeLabel={dict.a11y.closeMenu}
-      />
-    </div>
+    <!-- F5.1: uma island — idle para não competir com FCP (SSR já renderiza nav) -->
+    <HeaderActions
+      client:idle
+      locale={locale}
+      links={links}
+      navLabel={dict.a11y.mainNav}
+      languageLabel={dict.a11y.language}
+      themeLabel={dict.a11y.themeToggle}
+      labelLight={dict.a11y.switchToLight}
+      labelDark={dict.a11y.switchToDark}
+      menuLabel={dict.a11y.mobileNav}
+      openLabel={dict.a11y.openMenu}
+      closeLabel={dict.a11y.closeMenu}
+    />
   </div>
 </header>

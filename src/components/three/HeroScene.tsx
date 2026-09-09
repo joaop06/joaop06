@@ -1,7 +1,7 @@
 /**
- * Island do hero 3D (F4.4–F4.8).
- * Dynamic import de three/R3F (F4.5); fallback SVG se WebGL/reduced-motion (F4.8).
- * Ownership: R3F na cena; wrapper DOM sem Motion/GSAP.
+ * Island do hero 3D (F4.4–F4.8 / F5.3 / F5.8).
+ * Three/R3F só após interação no slot (ou idle longo) — fora do critical path.
+ * Fallback SVG cobre LCP e first paint.
  */
 import { Suspense, useEffect, useState, type ComponentType } from "react";
 import { prefersReducedMotion } from "@/lib/reduced-motion";
@@ -20,25 +20,39 @@ export default function HeroScene({ label }: HeroSceneProps) {
 
   useEffect(() => {
     let cancelled = false;
+    let loaded = false;
 
     if (prefersReducedMotion() || !supportsWebGL()) {
       setMode("fallback");
       return;
     }
 
-    // F4.5 — dynamic import; three/R3F não entram no chunk inicial
-    void import("./OrbitCanvas")
-      .then((mod) => {
-        if (cancelled) return;
-        setCanvas(() => mod.default);
-        setMode("webgl");
-      })
-      .catch(() => {
-        if (!cancelled) setMode("fallback");
-      });
+    const load = () => {
+      if (cancelled || loaded) return;
+      loaded = true;
+      void import("./OrbitCanvas")
+        .then((mod) => {
+          if (cancelled) return;
+          setCanvas(() => mod.default);
+          setMode("webgl");
+        })
+        .catch(() => {
+          if (!cancelled) setMode("fallback");
+        });
+    };
+
+    const slot = document.querySelector<HTMLElement>("[data-hero-3d-slot]");
+    const onInteract = () => load();
+    slot?.addEventListener("pointerenter", onInteract, { once: true });
+    slot?.addEventListener("focusin", onInteract, { once: true });
+    // Visitantes sem hover (mobile): carrega bem depois do first paint
+    const late = window.setTimeout(load, 4500);
 
     return () => {
       cancelled = true;
+      window.clearTimeout(late);
+      slot?.removeEventListener("pointerenter", onInteract);
+      slot?.removeEventListener("focusin", onInteract);
     };
   }, []);
 

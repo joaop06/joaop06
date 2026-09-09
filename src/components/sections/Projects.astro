@@ -1,5 +1,7 @@
 ---
+import { getImage } from "astro:assets";
 import ProjectsList from "../motion/ProjectsList";
+import projectThumb from "@/assets/project-thumb.svg";
 import { projects } from "@/data/projects";
 import type { Dictionary } from "@/i18n";
 
@@ -10,12 +12,21 @@ interface Props {
 
 const { dict, hash } = Astro.props;
 
+/** F5.4 — otimizar thumb uma vez no SSG; island React só recebe URL. */
+const thumbOptimized = await getImage({
+  src: projectThumb,
+  width: 160,
+  height: 100,
+});
+
 const items = projects.map((project) => {
   const copy = dict.projects.items[project.id];
   return {
     id: project.id,
     url: project.url,
-    thumb: project.thumb,
+    thumb: thumbOptimized.src,
+    thumbWidth: thumbOptimized.attributes.width ?? 160,
+    thumbHeight: thumbOptimized.attributes.height ?? 100,
     name: copy.name,
     description: copy.description,
     visitLabel: dict.projects.visit,

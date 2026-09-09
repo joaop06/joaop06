@@ -57,7 +57,7 @@ const ed = dict.education;
               <code class="font-mono ml-1 text-fg">{education.frontendCert.uuid}</code>
             </p>
             <CopyButton
-              client:load
+              client:visible
               value={education.frontendCert.uuid}
               label={dict.a11y.copyCredential}
               copiedLabel={dict.a11y.copied}

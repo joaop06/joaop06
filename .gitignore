@@ -3,6 +3,12 @@ dist/
 # generated types
 .astro/
 
+# F5 local perf artefacts
+stats.html
+lighthouse-report*.json
+lighthouse-report*.html
+.lighthouseci/
+
 # dependencies
 node_modules/
 

@@ -577,17 +577,17 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Tasks
 
-- [ ] **F5.1** Auditar islands: preferir `client:visible` / `client:idle` / `client:load` só onde inevitável (tema anti-FOUC pode ser script mínimo inline).
-- [ ] **F5.2** Importar plugins GSAP de forma tree-shakeable; registrar ScrollTrigger uma vez.
-- [ ] **F5.3** Não importar R3F no caminho crítico das demais seções.
-- [ ] **F5.4** Imagens via Astro `<Image>` / assets otimizados; width/height explícitos (CLS).
-- [ ] **F5.5** Fontes: subset + preload apenas pesos críticos.
-- [ ] **F5.6** Dividir CSS; evitar jumbos de utilitários não usados (Purge/content paths corretos).
-- [ ] **F5.7** Medir com Lighthouse (mobile + desktop) em build de produção.
-- [ ] **F5.8** Targets: **Performance ≥ 90**, **Accessibility ≥ 95**, **Best Practices ≥ 95**, **SEO ≥ 95**.
-- [ ] **F5.9** Verificar ausência de layout thrashing no scroll (timeline).
-- [ ] **F5.10** Bundle visualizer opcional (`rollup-plugin-visualizer`) para caçar outliers.
-- [ ] **F5.11** Prefetch de rotas de idioma conforme padrão Astro.
+- [x] **F5.1** Auditar islands: preferir `client:visible` / `client:idle` / `client:load` só onde inevitável (tema anti-FOUC pode ser script mínimo inline).
+- [x] **F5.2** Importar plugins GSAP de forma tree-shakeable; registrar ScrollTrigger uma vez.
+- [x] **F5.3** Não importar R3F no caminho crítico das demais seções.
+- [x] **F5.4** Imagens via Astro `<Image>` / assets otimizados; width/height explícitos (CLS).
+- [x] **F5.5** Fontes: subset + preload apenas pesos críticos.
+- [x] **F5.6** Dividir CSS; evitar jumbos de utilitários não usados (Purge/content paths corretos).
+- [x] **F5.7** Medir com Lighthouse (mobile + desktop) em build de produção.
+- [x] **F5.8** Targets: **Performance ≥ 90**, **Accessibility ≥ 95**, **Best Practices ≥ 95**, **SEO ≥ 95**.
+- [x] **F5.9** Verificar ausência de layout thrashing no scroll (timeline).
+- [x] **F5.10** Bundle visualizer opcional (`rollup-plugin-visualizer`) para caçar outliers.
+- [x] **F5.11** Prefetch de rotas de idioma conforme padrão Astro.
 
 #### Critérios de aceite
 
@@ -597,7 +597,7 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Done
 
-- [ ] Fase 5 concluída
+- [x] Fase 5 concluída
 
 ---
 

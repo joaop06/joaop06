@@ -26,7 +26,7 @@ export default function HeroCtas({ items }: HeroCtasProps) {
           rel={item.external ? "noopener noreferrer" : undefined}
           className={
             item.variant === "primary"
-              ? "inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-white no-underline"
+              ? "inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-on-accent no-underline"
               : "glass inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-fg no-underline"
           }
         >
