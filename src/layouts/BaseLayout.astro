@@ -1,0 +1,79 @@
+---
+import Footer from "../components/shell/Footer.astro";
+import Header from "../components/shell/Header.astro";
+import { getDictionary, type Locale } from "../i18n";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  lang?: Locale;
+}
+
+const { lang = "pt" } = Astro.props;
+const dict = getDictionary(lang);
+const title = Astro.props.title ?? dict.meta.title;
+const description = Astro.props.description ?? dict.meta.description;
+const htmlLang = lang === "pt" ? "pt-BR" : "en";
+const alternateLang = lang === "pt" ? "en" : "pt";
+const alternatePath = `/${alternateLang}`;
+---
+
+<!doctype html>
+<html lang={htmlLang} data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" hreflang={htmlLang} href={`/${lang}`} />
+    <link
+      rel="alternate"
+      hreflang={alternateLang === "pt" ? "pt-BR" : "en"}
+      href={alternatePath}
+    />
+    <link rel="canonical" href={`https://joaoborges-dev.vercel.app/${lang}`} />
+    <!-- F1.2 fontes -->
+    <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://cdn.fontshare.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://api.fontshare.com/v2/css?f[]=satoshi@500,700&f[]=general-sans@400,500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <!-- F1.4 anti-FOUC: tema antes da pintura -->
+    <script is:inline>
+      (function () {
+        try {
+          const stored = localStorage.getItem("theme");
+          let theme = "light";
+          if (stored === "light" || stored === "dark") {
+            theme = stored;
+          } else if (
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          ) {
+            theme = "dark";
+          }
+          document.documentElement.setAttribute("data-theme", theme);
+        } catch {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      })();
+    </script>
+    <title>{title}</title>
+  </head>
+  <body class="bg-bg text-fg">
+    <a class="skip-link" href="#conteudo">{dict.a11y.skipToContent}</a>
+    <Header locale={lang} dict={dict} />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <Footer locale={lang} dict={dict} />
+  </body>
+</html>

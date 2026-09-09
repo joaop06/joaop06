@@ -1,0 +1,63 @@
+---
+import type { Dictionary } from "@/i18n";
+import { formatExperienceDuration } from "@/lib/experience-duration";
+import type { Locale } from "@/i18n";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+  hash: string;
+}
+
+const { locale, dict, hash } = Astro.props;
+const duration = formatExperienceDuration(locale);
+const body = dict.about.body.replace("{duration}", duration);
+---
+
+<section id={hash} class="section-shell" aria-labelledby={`${hash}-heading`}>
+  <div class="container-site grid gap-10 md:grid-cols-[minmax(0,1fr)_200px] md:items-start">
+    <div>
+      <h2
+        id={`${hash}-heading`}
+        class="font-display text-3xl font-bold text-fg md:text-4xl"
+      >
+        {dict.about.title}
+      </h2>
+
+      {/* Âncora estática SEO + duração dinâmica na frase */}
+      <p class="sr-only">{dict.about.sinceAnchor}</p>
+      <p class="mt-5 max-w-prose text-base leading-relaxed text-fg md:text-lg">
+        {body}
+      </p>
+
+      <div class="mt-6 flex flex-wrap items-center gap-3">
+        <p class="m-0 text-sm text-fg-muted">{dict.about.availability}</p>
+        <ul class="m-0 flex list-none flex-wrap gap-2 p-0" aria-label={dict.about.availability}>
+          <li
+            class="rounded-xl border border-border-glass bg-accent-soft px-3 py-1 font-mono text-xs font-medium text-accent"
+          >
+            {dict.about.availabilityClt}
+          </li>
+          <li
+            class="rounded-xl border border-border-glass bg-accent-soft px-3 py-1 font-mono text-xs font-medium text-accent"
+          >
+            {dict.about.availabilityFreelance}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <figure class="m-0 justify-self-start md:justify-self-end">
+      <img
+        src="/avatar.svg"
+        alt={dict.a11y.photoPlaceholder}
+        width="200"
+        height="200"
+        class="rounded-2xl border border-border-glass bg-bg-elevated"
+      />
+      <figcaption class="mt-2 text-xs text-fg-muted">
+        {dict.a11y.photoPlaceholder}
+      </figcaption>
+    </figure>
+  </div>
+</section>

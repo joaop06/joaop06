@@ -1,0 +1,31 @@
+---
+/**
+ * Página mínima de redirect client-side para âncora.
+ * Redirects HTTP não preservam fragment (#) de forma confiável.
+ */
+interface Props {
+  target: string;
+  label?: string;
+}
+
+const { target, label = "Redirecting…" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex" />
+    <meta http-equiv="refresh" content={`0;url=${target}`} />
+    <link rel="canonical" href={target.split("#")[0]} />
+    <title>{label}</title>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+  </head>
+  <body>
+    <p>
+      <a href={target}>{label}</a>
+    </p>
+  </body>
+</html>

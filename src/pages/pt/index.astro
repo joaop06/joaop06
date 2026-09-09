@@ -1,0 +1,37 @@
+---
+import About from "../../components/sections/About.astro";
+import Contact from "../../components/sections/Contact.astro";
+import Education from "../../components/sections/Education.astro";
+import Experience from "../../components/sections/Experience.astro";
+import Hero from "../../components/sections/Hero.astro";
+import Projects from "../../components/sections/Projects.astro";
+import StackSection from "../../components/sections/StackSection.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getDictionary } from "../../i18n";
+import { getSections } from "../../lib/sections";
+
+const locale = "pt" as const;
+const dict = getDictionary(locale);
+const sections = getSections(locale);
+
+const byId = Object.fromEntries(sections.map((s) => [s.id, s.hash])) as Record<
+  (typeof sections)[number]["id"],
+  string
+>;
+---
+
+<BaseLayout title={dict.meta.title} description={dict.meta.description} lang={locale}>
+  <Hero
+    locale={locale}
+    dict={dict}
+    hashHome={byId.home}
+    hashContact={byId.contact}
+    hashProjects={byId.projects}
+  />
+  <About locale={locale} dict={dict} hash={byId.about} />
+  <Education dict={dict} hash={byId.education} />
+  <StackSection dict={dict} hash={byId.stack} />
+  <Experience dict={dict} hash={byId.experience} />
+  <Projects dict={dict} hash={byId.projects} />
+  <Contact dict={dict} hash={byId.contact} />
+</BaseLayout>

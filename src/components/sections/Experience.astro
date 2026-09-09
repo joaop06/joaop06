@@ -1,0 +1,49 @@
+---
+import type { Dictionary } from "@/i18n";
+
+interface Props {
+  dict: Dictionary;
+  hash: string;
+}
+
+const { dict, hash } = Astro.props;
+const exp = dict.experience;
+---
+
+<section id={hash} class="section-shell" aria-labelledby={`${hash}-heading`}>
+  <div class="container-site">
+    <h2
+      id={`${hash}-heading`}
+      class="font-display text-3xl font-bold text-fg md:text-4xl"
+    >
+      {exp.title}
+    </h2>
+
+    <p class="mt-3 text-fg-muted">{exp.employer}</p>
+
+    <div class="mt-10 flex flex-col gap-10">
+      <article>
+        <h3 class="font-display m-0 text-xl font-semibold text-fg">
+          {exp.backend.role}
+        </h3>
+        <p class="font-mono mt-2 text-sm text-fg-muted">
+          {exp.backend.period} · {exp.location}
+        </p>
+        <ul class="mt-4 max-w-prose list-disc space-y-2 pl-5 text-fg">
+          {exp.backend.bullets.map((bullet) => <li>{bullet}</li>)}
+        </ul>
+      </article>
+
+      {/* F2.17 — peso visual menor */}
+      <article class="border-l-2 border-border-glass pl-5 opacity-80">
+        <h3 class="font-display m-0 text-base font-medium text-fg-muted">
+          {exp.support.role}
+        </h3>
+        <p class="font-mono mt-2 text-xs text-fg-muted">
+          {exp.support.period} · {exp.location}
+        </p>
+        <p class="mt-3 max-w-prose text-sm text-fg-muted">{exp.support.summary}</p>
+      </article>
+    </div>
+  </div>
+</section>

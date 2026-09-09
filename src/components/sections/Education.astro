@@ -1,0 +1,82 @@
+---
+import { CopyButton } from "@/components/ui/CopyButton";
+import { education } from "@/data/profile";
+import type { Dictionary } from "@/i18n";
+
+interface Props {
+  dict: Dictionary;
+  hash: string;
+}
+
+const { dict, hash } = Astro.props;
+const ed = dict.education;
+---
+
+<section id={hash} class="section-shell" aria-labelledby={`${hash}-heading`}>
+  <div class="container-site">
+    <h2
+      id={`${hash}-heading`}
+      class="font-display text-3xl font-bold text-fg md:text-4xl"
+    >
+      {ed.title}
+    </h2>
+
+    <ol class="mt-10 m-0 flex list-none flex-col gap-10 p-0">
+      <li>
+        <article>
+          <h3 class="font-display m-0 text-xl font-semibold text-fg">
+            {ed.fatec.degree}
+          </h3>
+          <p class="mt-1 text-fg-muted">{ed.fatec.institution}</p>
+          <p class="font-mono mt-2 text-sm text-fg-muted">{ed.fatec.period}</p>
+          <p class="mt-3 max-w-prose text-fg">{ed.fatec.hours}</p>
+        </article>
+      </li>
+
+      <li>
+        <article>
+          <h3 class="font-display m-0 text-xl font-semibold text-fg">
+            {ed.technologist.name}
+          </h3>
+          <p class="mt-2 max-w-prose text-fg-muted">{ed.technologist.note}</p>
+        </article>
+      </li>
+
+      <li>
+        <article>
+          <h3 class="font-display m-0 text-xl font-semibold text-fg">
+            {ed.frontendCert.name}
+          </h3>
+          <p class="mt-1 text-fg-muted">{ed.frontendCert.type}</p>
+          <p class="font-mono mt-2 text-sm text-fg-muted">
+            {ed.frontendCert.issued}
+          </p>
+          <div class="mt-4 flex flex-wrap items-center gap-3">
+            <p class="m-0 text-sm text-fg-muted">
+              {ed.frontendCert.credentialLabel}:
+              <code class="font-mono ml-1 text-fg">{education.frontendCert.uuid}</code>
+            </p>
+            <CopyButton
+              client:load
+              value={education.frontendCert.uuid}
+              label={dict.a11y.copyCredential}
+              copiedLabel={dict.a11y.copied}
+              buttonLabel={ed.frontendCert.copy}
+              className="glass inline-flex items-center gap-2 px-3 py-1.5 text-sm text-fg"
+            />
+          </div>
+        </article>
+      </li>
+
+      <li>
+        <article>
+          <h3 class="font-display m-0 text-lg font-semibold text-fg">
+            {ed.etec.degree}
+          </h3>
+          <p class="mt-1 text-fg-muted">{ed.etec.institution}</p>
+          <p class="font-mono mt-2 text-sm text-fg-muted">{ed.etec.period}</p>
+        </article>
+      </li>
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+import { projects } from "@/data/projects";
+import type { Dictionary } from "@/i18n";
+
+interface Props {
+  dict: Dictionary;
+  hash: string;
+}
+
+const { dict, hash } = Astro.props;
+---
+
+<section id={hash} class="section-shell" aria-labelledby={`${hash}-heading`}>
+  <div class="container-site">
+    <h2
+      id={`${hash}-heading`}
+      class="font-display text-3xl font-bold text-fg md:text-4xl"
+    >
+      {dict.projects.title}
+    </h2>
+
+    <ul class="mt-10 m-0 flex list-none flex-col gap-2 p-0">
+      {
+        projects.map((project) => {
+          const copy = dict.projects.items[project.id];
+          return (
+            <li>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group glass flex flex-col gap-4 p-4 no-underline transition-colors duration-[var(--dur-fast)] hover:bg-accent-soft sm:flex-row sm:items-center"
+              >
+                <img
+                  src={project.thumb}
+                  alt=""
+                  width="160"
+                  height="100"
+                  class="aspect-[16/10] w-full max-w-[160px] rounded-xl object-cover"
+                  loading="lazy"
+                />
+                <div class="min-w-0 flex-1">
+                  <h3 class="font-display m-0 text-lg font-semibold text-fg">
+                    {copy.name}
+                    <span class="sr-only"> ({dict.a11y.externalLink})</span>
+                  </h3>
+                  <p class="mt-1 m-0 text-sm text-fg-muted">{copy.description}</p>
+                  <p class="mt-3 m-0 font-mono text-xs text-accent">
+                    {dict.projects.visit} →
+                  </p>
+                </div>
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,80 @@
+---
+import LanguageSwitcher from "./LanguageSwitcher";
+import type { Dictionary, Locale } from "@/i18n";
+import { contact } from "@/data/contact";
+
+interface Props {
+  locale: Locale;
+  dict: Dictionary;
+}
+
+const { locale, dict } = Astro.props;
+const year = new Date().getFullYear();
+
+const social = [
+  { label: dict.contact.linkedin, href: contact.linkedin },
+  { label: dict.contact.github, href: contact.github },
+  { label: dict.contact.instagram, href: contact.instagram },
+  { label: dict.contact.email, href: `mailto:${contact.email}` },
+  { label: dict.contact.whatsapp, href: contact.whatsappUrl },
+] as const;
+---
+
+<footer class="border-t border-border-glass py-10" role="contentinfo">
+  <div class="container-site flex flex-col gap-8">
+    <div
+      class="flex flex-col gap-6 md:flex-row md:items-start md:justify-between"
+    >
+      <div>
+        <p class="font-display m-0 font-medium text-fg">{dict.footer.rights}</p>
+        <p class="mt-1 m-0 text-sm text-fg-muted">
+          © {year} · {dict.footer.copyright}
+        </p>
+        <p class="mt-1 m-0 text-sm text-fg-muted">{dict.footer.location}</p>
+      </div>
+
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:gap-10">
+        <div>
+          <p class="m-0 text-xs font-medium uppercase tracking-wide text-fg-muted">
+            {dict.footer.social}
+          </p>
+          <ul class="mt-2 m-0 flex list-none flex-wrap gap-3 p-0">
+            {
+              social.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="text-sm text-fg no-underline hover:text-accent"
+                    target={item.href.startsWith("http") ? "_blank" : undefined}
+                    rel={
+                      item.href.startsWith("http")
+                        ? "noopener noreferrer"
+                        : undefined
+                    }
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-3">
+          <a
+            href={contact.cvPath}
+            download
+            class="glass inline-flex items-center px-4 py-2 text-sm font-medium text-fg no-underline"
+          >
+            {dict.footer.cv}
+          </a>
+          <LanguageSwitcher
+            client:load
+            locale={locale}
+            label={dict.a11y.language}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,25 @@
+---
+import type { SectionId } from "@/lib/sections";
+
+interface Props {
+  id: string;
+  title: string;
+  sectionId: SectionId;
+  placeholder: string;
+}
+
+const { id, title, placeholder } = Astro.props;
+---
+
+<section id={id} class="section-shell" aria-labelledby={`${id}-heading`}>
+  <div class="container-site">
+    <h2
+      id={`${id}-heading`}
+      class="font-display text-3xl font-bold text-fg md:text-4xl"
+    >
+      {title}
+    </h2>
+    <p class="mt-3 max-w-prose text-fg-muted">{placeholder}</p>
+    <slot />
+  </div>
+</section>
