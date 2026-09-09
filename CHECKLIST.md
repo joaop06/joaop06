@@ -546,16 +546,16 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Tasks
 
-- [ ] **F4.1** Implementar cena procedural **Órbita de Integrações** (§7.1) — primitivos R3F, sem depender de GLB na v1.
-- [ ] **F4.2** Se no futuro houver GLB: pipeline compressão + **gltfjsx** (P8). Na v1, pular GLB.
-- [ ] **F4.3** Materiais glass/`MeshTransmission` ou physical alinhados ao tema; evitar texturas PNG pesadas.
-- [ ] **F4.4** Island `HeroScene.tsx` com `client:visible` (ou `client:idle`).
-- [ ] **F4.5** Dynamic import de `three` / R3F para não inflar o bundle inicial.
-- [ ] **F4.6** Limitar DPR (`dpr={[1, 1.5]}`), pausar render quando offscreen (`IntersectionObserver` ou `frameloop="demand"` + invalidate).
-- [ ] **F4.7** Interação: pointer suave (rotation) sem scrolljacking.
-- [ ] **F4.8** Fallback: imagem/SVG estático se WebGL falhar ou reduced motion.
-- [ ] **F4.9** Dispose no unmount; sem leaks em Strict Mode.
-- [ ] **F4.10** Budget: shaders/geometria leves; se houver assets, **< 1.5 MB** total transfer.
+- [x] **F4.1** Implementar cena procedural **Órbita de Integrações** (§7.1) — primitivos R3F, sem depender de GLB na v1.
+- [x] **F4.2** Se no futuro houver GLB: pipeline compressão + **gltfjsx** (P8). Na v1, pular GLB.
+- [x] **F4.3** Materiais glass/`MeshTransmission` ou physical alinhados ao tema; evitar texturas PNG pesadas.
+- [x] **F4.4** Island `HeroScene.tsx` com `client:visible` (ou `client:idle`).
+- [x] **F4.5** Dynamic import de `three` / R3F para não inflar o bundle inicial.
+- [x] **F4.6** Limitar DPR (`dpr={[1, 1.5]}`), pausar render quando offscreen (`IntersectionObserver` ou `frameloop="demand"` + invalidate).
+- [x] **F4.7** Interação: pointer suave (rotation) sem scrolljacking.
+- [x] **F4.8** Fallback: imagem/SVG estático se WebGL falhar ou reduced motion.
+- [x] **F4.9** Dispose no unmount; sem leaks em Strict Mode.
+- [x] **F4.10** Budget: shaders/geometria leves; se houver assets, **< 1.5 MB** total transfer.
 
 #### Critérios de aceite
 
@@ -565,7 +565,7 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Done
 
-- [ ] Fase 4 concluída
+- [x] Fase 4 concluída
 
 ---
 

@@ -17,7 +17,7 @@ export const en = {
     switchToDark: "Use dark theme",
     copyCredential: "Copy credential code",
     copied: "Copied",
-    heroVisual: "Reserved space for the hero 3D visual",
+    heroVisual: "Orbit of Integrations — 3D visual of the service core and integrations",
     photoPlaceholder: "Professional photo coming soon",
     externalLink: "opens in a new tab",
   },

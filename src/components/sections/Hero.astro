@@ -1,5 +1,6 @@
 ---
 import HeroCtas from "../motion/HeroCtas";
+import HeroScene from "../three/HeroScene";
 import type { Dictionary, Locale } from "@/i18n";
 import { contact, whatsappScheduleUrl } from "@/data/contact";
 import { sectionHref } from "@/lib/sections";
@@ -73,43 +74,17 @@ const ctas = [
       <HeroCtas client:visible items={ctas} />
     </div>
 
-    {/* F2.5 — slot canvas 3D (Fase 4) */}
+    {/* F4 — Órbita de Integrações (R3F); wrapper sem Motion/GSAP */}
     <div
       class="glass relative aspect-[4/3] w-full min-h-[220px] overflow-hidden lg:min-h-[320px]"
-      role="img"
-      aria-label={dict.a11y.heroVisual}
       data-hero-3d-slot
     >
       <div
-        class="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,color-mix(in_oklab,var(--accent)_28%,transparent),transparent_62%)]"
+        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,color-mix(in_oklab,var(--accent)_18%,transparent),transparent_62%)]"
         aria-hidden="true"
       >
       </div>
-      <div
-        class="absolute left-1/2 top-1/2 size-20 -translate-x-1/2 -translate-y-1/2 rounded-2xl border border-border-glass bg-bg-elevated/80 shadow-[0_8px_32px_var(--glow)]"
-        aria-hidden="true"
-      >
-      </div>
-      <div
-        class="absolute left-[18%] top-[28%] size-3 rounded-md bg-accent/50"
-        aria-hidden="true"
-      >
-      </div>
-      <div
-        class="absolute right-[22%] top-[34%] size-2.5 rounded-md bg-accent/40"
-        aria-hidden="true"
-      >
-      </div>
-      <div
-        class="absolute bottom-[26%] left-[30%] size-2.5 rounded-md bg-accent/35"
-        aria-hidden="true"
-      >
-      </div>
-      <div
-        class="absolute bottom-[30%] right-[26%] size-3 rounded-md bg-accent/45"
-        aria-hidden="true"
-      >
-      </div>
+      <HeroScene client:visible label={dict.a11y.heroVisual} />
     </div>
   </div>
 </section>

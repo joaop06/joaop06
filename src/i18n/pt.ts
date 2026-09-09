@@ -17,7 +17,7 @@ export const pt = {
     switchToDark: "Usar tema escuro",
     copyCredential: "Copiar código da credencial",
     copied: "Copiado",
-    heroVisual: "Espaço reservado para visual 3D do hero",
+    heroVisual: "Órbita de Integrações — visual 3D do núcleo de serviços e integrações",
     photoPlaceholder: "Foto profissional em breve",
     externalLink: "abre em nova aba",
   },
