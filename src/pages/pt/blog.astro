@@ -1,0 +1,29 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getDictionary } from "../../i18n";
+
+/** F6.16 — stub “em breve”; fora da nav; noindex. */
+const locale = "pt" as const;
+const dict = getDictionary(locale);
+---
+
+<BaseLayout
+  lang={locale}
+  noindex={true}
+  title={`${dict.blog.title} — ${dict.meta.title}`}
+  description={dict.blog.comingSoon}
+>
+  <section class="section-shell" aria-labelledby="blog-heading">
+    <div class="container-site max-w-prose">
+      <h1 id="blog-heading" class="font-display text-3xl font-bold text-fg">
+        {dict.blog.title}
+      </h1>
+      <p class="mt-4 text-fg-muted">{dict.blog.comingSoon}</p>
+      <p class="mt-8">
+        <a href="/pt" class="text-accent no-underline hover:underline">
+          {dict.blog.back}
+        </a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>

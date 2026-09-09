@@ -1,0 +1,13 @@
+{
+  "name": "João Pedro Borges",
+  "description": "Software Engineer portfolio — see /llms.txt and /content/*.md",
+  "url": "https://joaoborges-dev.vercel.app",
+  "content_urls": [
+    "https://joaoborges-dev.vercel.app/llms.txt",
+    "https://joaoborges-dev.vercel.app/content/sobre.md",
+    "https://joaoborges-dev.vercel.app/content/experiencia.md",
+    "https://joaoborges-dev.vercel.app/content/stack.md",
+    "https://joaoborges-dev.vercel.app/content/projetos.md",
+    "https://joaoborges-dev.vercel.app/content/formacao.md"
+  ]
+}

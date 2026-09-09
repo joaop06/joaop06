@@ -1,9 +1,10 @@
 /** English dictionary — Phase 2 content. */
 export const en = {
   meta: {
-    title: "João Pedro Borges",
+    title:
+      "João Pedro Borges — Software Engineer · NestJS · Node.js | Franca, Brazil",
     description:
-      "Software Engineer · NestJS · Node.js · TypeScript — Franca, SP, Brazil.",
+      "Software Engineer focused on backend with NestJS, Node.js, and TypeScript. APIs, integrations, and internal systems — Franca, SP, Brazil. Open to full-time and freelance. Since May 2023.",
   },
   a11y: {
     skipToContent: "Skip to content",
@@ -178,12 +179,37 @@ export const en = {
       defaultSubject: "Portfolio contact",
     },
   },
+  faq: {
+    title: "Frequently asked questions",
+    stack: {
+      question: "What is your stack?",
+      answer:
+        "Primary: NestJS, Node.js, and TypeORM. I also work with JavaScript/TypeScript, Sequelize, MySQL, Firebird, PostgreSQL, Docker, RabbitMQ, React, React Native, Vue.js, Flutter, and Python.",
+    },
+    availability: {
+      question: "Are you available for freelance?",
+      answer:
+        "Yes. I am open to full-time (CLT) roles and freelance projects.",
+    },
+    experience: {
+      question: "How long have you been coding professionally?",
+      answer:
+        "I have worked as a programmer since May 2023, focused on JavaScript/Node.js backend.",
+    },
+  },
   footer: {
     rights: "João Pedro Borges",
     copyright: "All rights reserved.",
     location: "Franca, São Paulo, Brazil",
     cv: "Download CV",
     social: "Social",
+    markdown: "Markdown content",
+    llms: "llms.txt",
+  },
+  blog: {
+    title: "Blog",
+    comingSoon: "Coming soon — structural prep for future posts.",
+    back: "Back to home",
   },
   shell: {
     placeholder: "Content coming soon",

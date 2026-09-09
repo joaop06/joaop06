@@ -3,6 +3,7 @@ import About from "../../components/sections/About.astro";
 import Contact from "../../components/sections/Contact.astro";
 import Education from "../../components/sections/Education.astro";
 import Experience from "../../components/sections/Experience.astro";
+import Faq from "../../components/sections/Faq.astro";
 import Hero from "../../components/sections/Hero.astro";
 import Projects from "../../components/sections/Projects.astro";
 import StackSection from "../../components/sections/StackSection.astro";
@@ -33,5 +34,6 @@ const byId = Object.fromEntries(sections.map((s) => [s.id, s.hash])) as Record<
   <StackSection dict={dict} hash={byId.stack} />
   <Experience dict={dict} hash={byId.experience} />
   <Projects dict={dict} hash={byId.projects} />
+  <Faq dict={dict} hash="faq" />
   <Contact dict={dict} hash={byId.contact} />
 </BaseLayout>

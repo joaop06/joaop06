@@ -1,4 +1,10 @@
 User-agent: *
 Allow: /
+Allow: /content/
+Allow: /llms.txt
+Allow: /.well-known/
+
+Disallow: /pt/blog
+Disallow: /en/blog
 
 Sitemap: https://joaoborges-dev.vercel.app/sitemap-index.xml

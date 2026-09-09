@@ -1,5 +1,6 @@
 import { defineConfig } from "astro/config";
 import react from "@astrojs/react";
+import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 import { visualizer } from "rollup-plugin-visualizer";
 
@@ -14,7 +15,29 @@ export default defineConfig({
     prefetchAll: true,
     defaultStrategy: "hover",
   },
-  integrations: [react()],
+  integrations: [
+    react(),
+    // F6.4 — sitemap com locales + alternates
+    sitemap({
+      i18n: {
+        defaultLocale: "pt",
+        locales: {
+          pt: "pt-BR",
+          en: "en",
+        },
+      },
+      filter: (page) => {
+        const path = new URL(page).pathname;
+        // Landings canônicas; exclui redirects de hash, CV e stub de blog
+        if (path === "/pt" || path === "/en") return true;
+        if (path === "/" || path.endsWith("/blog") || path.endsWith("/cv")) {
+          return false;
+        }
+        // Deep-links de seção (HashRedirect) → fora do sitemap
+        return false;
+      },
+    }),
+  ],
   vite: {
     plugins: [
       tailwindcss(),

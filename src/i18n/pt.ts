@@ -1,9 +1,10 @@
 /** Dicionário pt-BR — conteúdo Fase 2. */
 export const pt = {
   meta: {
-    title: "João Pedro Borges",
+    title:
+      "João Pedro Borges — Software Engineer · NestJS · Node.js | Franca, SP",
     description:
-      "Software Engineer · NestJS · Node.js · TypeScript — Franca, SP.",
+      "Software Engineer especializado em backend com NestJS, Node.js e TypeScript. APIs, integrações e sistemas internos — Franca, SP. Aberto a CLT e freelance. Desde maio de 2023.",
   },
   a11y: {
     skipToContent: "Ir para o conteúdo",
@@ -179,12 +180,37 @@ export const pt = {
       defaultSubject: "Contato pelo portfólio",
     },
   },
+  faq: {
+    title: "Perguntas frequentes",
+    stack: {
+      question: "Qual sua stack?",
+      answer:
+        "Principais: NestJS, Node.js e TypeORM. Também trabalho com JavaScript/TypeScript, Sequelize, MySQL, Firebird, PostgreSQL, Docker, RabbitMQ, React, React Native, Vue.js, Flutter e Python.",
+    },
+    availability: {
+      question: "Está disponível para freelance?",
+      answer:
+        "Sim. Estou disponível para oportunidades CLT e projetos freelance.",
+    },
+    experience: {
+      question: "Há quanto tempo programa?",
+      answer:
+        "Trabalho como programador desde maio de 2023, com foco em backend JavaScript/Node.js.",
+    },
+  },
   footer: {
     rights: "João Pedro Borges",
     copyright: "Todos os direitos reservados.",
     location: "Franca, São Paulo, Brasil",
     cv: "Baixar CV",
     social: "Redes",
+    markdown: "Conteúdo em Markdown",
+    llms: "llms.txt",
+  },
+  blog: {
+    title: "Blog",
+    comingSoon: "Em breve — preparação estrutural para posts futuros.",
+    back: "Voltar ao início",
   },
   shell: {
     placeholder: "Conteúdo em breve",

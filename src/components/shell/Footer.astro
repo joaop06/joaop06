@@ -18,6 +18,25 @@ const social = [
   { label: dict.contact.email, href: `mailto:${contact.email}` },
   { label: dict.contact.whatsapp, href: contact.whatsappUrl },
 ] as const;
+
+/** F6.15 — espelhos markdown + llms.txt */
+const mirrors = [
+  { href: "/content/sobre.md", label: locale === "pt" ? "Sobre" : "About" },
+  {
+    href: "/content/experiencia.md",
+    label: locale === "pt" ? "Experiência" : "Experience",
+  },
+  { href: "/content/stack.md", label: "Stack" },
+  {
+    href: "/content/projetos.md",
+    label: locale === "pt" ? "Projetos" : "Projects",
+  },
+  {
+    href: "/content/formacao.md",
+    label: locale === "pt" ? "Formação" : "Education",
+  },
+  { href: "/llms.txt", label: dict.footer.llms },
+] as const;
 ---
 
 <footer class="border-t border-border-glass py-10" role="contentinfo">
@@ -51,6 +70,26 @@ const social = [
                         ? "noopener noreferrer"
                         : undefined
                     }
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div>
+          <p class="m-0 text-xs font-medium uppercase tracking-wide text-fg-muted">
+            {dict.footer.markdown}
+          </p>
+          <ul class="mt-2 m-0 flex list-none flex-col gap-1.5 p-0">
+            {
+              mirrors.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="font-mono text-xs text-fg-muted no-underline hover:text-accent"
                   >
                     {item.label}
                   </a>

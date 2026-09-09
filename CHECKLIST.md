@@ -609,25 +609,25 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Tasks — SEO clássico
 
-- [ ] **F6.1** `<title>` e meta description únicos por locale.
-- [ ] **F6.2** Canonical `https://joaoborges-dev.vercel.app/pt` (e `/en`).
-- [ ] **F6.3** Open Graph + Twitter cards (imagem OG placeholder ≥ 1200×630).
-- [ ] **F6.4** `sitemap.xml` (Astro sitemap integration) incluindo locales e alternates.
-- [ ] **F6.5** `robots.txt` apontando sitemap; permitir crawl do conteúdo principal.
-- [ ] **F6.6** HTML semântico: um `h1` (nome), `h2` por seção, listas reais, `<time datetime>`.
-- [ ] **F6.7** `hreflang` pt/en + `x-default`.
-- [ ] **F6.8** JSON-LD `Person` (nome, jobTitle, email, url, sameAs redes, address Franca/SP/BR, knowsAbout stack).
-- [ ] **F6.9** JSON-LD `WebSite` (+ `SearchAction` omitido se não houver busca).
-- [ ] **F6.10** JSON-LD `ItemList` / `CreativeWork` para os 5 projetos com `url`.
-- [ ] **F6.11** FAQPage schema opcional (ex.: “Qual sua stack?”, “Está disponível para freelance?”) alinhado ao conteúdo visível.
+- [x] **F6.1** `<title>` e meta description únicos por locale.
+- [x] **F6.2** Canonical `https://joaoborges-dev.vercel.app/pt` (e `/en`).
+- [x] **F6.3** Open Graph + Twitter cards (imagem OG placeholder ≥ 1200×630).
+- [x] **F6.4** `sitemap.xml` (Astro sitemap integration) incluindo locales e alternates.
+- [x] **F6.5** `robots.txt` apontando sitemap; permitir crawl do conteúdo principal.
+- [x] **F6.6** HTML semântico: um `h1` (nome), `h2` por seção, listas reais, `<time datetime>`.
+- [x] **F6.7** `hreflang` pt/en + `x-default`.
+- [x] **F6.8** JSON-LD `Person` (nome, jobTitle, email, url, sameAs redes, address Franca/SP/BR, knowsAbout stack).
+- [x] **F6.9** JSON-LD `WebSite` (+ `SearchAction` omitido se não houver busca).
+- [x] **F6.10** JSON-LD `ItemList` / `CreativeWork` para os 5 projetos com `url`.
+- [x] **F6.11** FAQPage schema opcional (ex.: “Qual sua stack?”, “Está disponível para freelance?”) alinhado ao conteúdo visível.
 
 #### Tasks — Agentes de IA (prioridade altíssima)
 
-- [ ] **F6.12** `public/llms.txt` descrevendo quem é João, o que faz, links de seções, projetos, contato, idiomas, CV.
-- [ ] **F6.13** Espelho markdown em `src/content/mirror/` ou `public/content/*.md` (sobre, experiencia, stack, projetos, formacao) servido como estático linkado a partir de `llms.txt`.
-- [ ] **F6.14** Manter conteúdo crítico no HTML SSG (não só no canvas/JS).
-- [ ] **F6.15** Página ou arquivo `/.well-known/` se útil; no mínimo links claros no footer para versões markdown.
-- [ ] **F6.16** Preparar pasta/coleção `src/content/blog/` vazia + rota stub desabilitada ou “em breve” **sem** poluir nav principal — só base SEO futura (config de collection).
+- [x] **F6.12** `public/llms.txt` descrevendo quem é João, o que faz, links de seções, projetos, contato, idiomas, CV.
+- [x] **F6.13** Espelho markdown em `src/content/mirror/` ou `public/content/*.md` (sobre, experiencia, stack, projetos, formacao) servido como estático linkado a partir de `llms.txt`.
+- [x] **F6.14** Manter conteúdo crítico no HTML SSG (não só no canvas/JS).
+- [x] **F6.15** Página ou arquivo `/.well-known/` se útil; no mínimo links claros no footer para versões markdown.
+- [x] **F6.16** Preparar pasta/coleção `src/content/blog/` vazia + rota stub desabilitada ou “em breve” **sem** poluir nav principal — só base SEO futura (config de collection).
 
 #### Critérios de aceite
 
@@ -638,7 +638,7 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Done
 
-- [ ] Fase 6 concluída
+- [x] Fase 6 concluída
 
 ---
 

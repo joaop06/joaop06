@@ -44,6 +44,21 @@ const items = projects.map((project) => {
       {dict.projects.title}
     </h2>
 
+    {/* F6.14 — lista semântica no HTML SSG; island só enriquece interação */}
+    <noscript>
+      <ul class="mt-10 m-0 flex list-none flex-col gap-4 p-0">
+        {
+          items.map((project) => (
+            <li>
+              <a href={project.url} rel="noopener noreferrer" target="_blank">
+                <strong>{project.name}</strong>
+              </a>
+              <p class="m-0 text-sm text-fg-muted">{project.description}</p>
+            </li>
+          ))
+        }
+      </ul>
+    </noscript>
     <ProjectsList client:visible items={items} />
   </div>
 </section>

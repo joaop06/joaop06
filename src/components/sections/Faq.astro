@@ -1,0 +1,43 @@
+---
+import { buildFaqItems } from "@/lib/seo";
+import type { Dictionary } from "@/i18n";
+
+interface Props {
+  dict: Dictionary;
+  /** id âncora (faq / perguntas) — fora da nav principal */
+  hash?: string;
+}
+
+const { dict, hash = "faq" } = Astro.props;
+const items = buildFaqItems(dict);
+---
+
+{/* F6.11 — FAQ visível alinhado ao JSON-LD FAQPage */}
+<section
+  id={hash}
+  class="section-shell pt-0"
+  aria-labelledby={`${hash}-heading`}
+>
+  <div class="container-site">
+    <h2
+      id={`${hash}-heading`}
+      class="font-display text-2xl font-bold text-fg md:text-3xl"
+    >
+      {dict.faq.title}
+    </h2>
+    <dl class="mt-8 m-0 max-w-prose space-y-6">
+      {
+        items.map((item) => (
+          <div>
+            <dt class="font-display m-0 text-base font-semibold text-fg">
+              {item.question}
+            </dt>
+            <dd class="mt-2 m-0 text-sm leading-relaxed text-fg-muted md:text-base">
+              {item.answer}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>

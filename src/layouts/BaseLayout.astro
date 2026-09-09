@@ -5,23 +5,37 @@ import EasterEggs from "../components/motion/EasterEggs";
 import ScrollRuntime from "../components/motion/ScrollRuntime";
 import TimelineGuide from "../components/motion/TimelineGuide.astro";
 import { getDictionary, type Locale } from "../i18n";
+import {
+  absoluteUrl,
+  buildJsonLdGraph,
+  localeHomeUrl,
+  ogImageUrl,
+  siteUrl,
+} from "../lib/seo";
 import "../styles/global.css";
 
 interface Props {
   title?: string;
   description?: string;
   lang?: Locale;
+  /** noindex para stubs (ex.: blog em breve) */
+  noindex?: boolean;
 }
 
-const { lang = "pt" } = Astro.props;
+const { lang = "pt", noindex = false } = Astro.props;
 const dict = getDictionary(lang);
 const title = Astro.props.title ?? dict.meta.title;
 const description = Astro.props.description ?? dict.meta.description;
 const htmlLang = lang === "pt" ? "pt-BR" : "en";
 const alternateLang = lang === "pt" ? "en" : "pt";
-const site = Astro.site?.href.replace(/\/$/, "") ?? "https://joaoborges-dev.vercel.app";
-const selfUrl = `${site}/${lang}`;
-const alternateUrl = `${site}/${alternateLang}`;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const isLocaleHome = path === `/${lang}`;
+/** F6.2 — landings /pt e /en; demais páginas usam URL própria */
+const selfUrl = isLocaleHome ? localeHomeUrl(lang) : absoluteUrl(path);
+const alternateUrl = localeHomeUrl(alternateLang);
+const ogImage = ogImageUrl();
+const jsonLd = isLocaleHome ? buildJsonLdGraph(lang) : null;
+const twitterLocale = lang === "pt" ? "pt_BR" : "en_US";
 ---
 
 <!doctype html>
@@ -31,16 +45,49 @@ const alternateUrl = `${site}/${alternateLang}`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content={Astro.generator} />
     <meta name="description" content={description} />
+    {noindex ? <meta name="robots" content="noindex,nofollow" /> : null}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" hreflang={htmlLang} href={selfUrl} />
-    <link
-      rel="alternate"
-      hreflang={alternateLang === "pt" ? "pt-BR" : "en"}
-      href={alternateUrl}
-    />
-    <link rel="alternate" hreflang="x-default" href={`${site}/pt`} />
+    {
+      isLocaleHome ? (
+        <>
+          {/* F6.7 hreflang */}
+          <link rel="alternate" hreflang={htmlLang} href={selfUrl} />
+          <link
+            rel="alternate"
+            hreflang={alternateLang === "pt" ? "pt-BR" : "en"}
+            href={alternateUrl}
+          />
+          <link rel="alternate" hreflang="x-default" href={`${siteUrl}/pt`} />
+        </>
+      ) : null
+    }
+    {/* F6.2 canonical */}
     <link rel="canonical" href={selfUrl} />
-    <!-- F5.5 — preload só pesos críticos de first paint -->
+    <!-- F6.3 Open Graph + Twitter -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="João Pedro Borges" />
+    <meta property="og:locale" content={twitterLocale} />
+    <meta
+      property="og:locale:alternate"
+      content={lang === "pt" ? "en_US" : "pt_BR"}
+    />
+    <meta property="og:url" content={selfUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={title} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <!-- F6.8–F6.11 JSON-LD (landings) -->
+    {
+      jsonLd ? (
+        <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+      ) : null
+    }    <!-- F5.5 — preload só pesos críticos de first paint -->
     <link
       rel="preload"
       href="/fonts/satoshi-700.woff2"
