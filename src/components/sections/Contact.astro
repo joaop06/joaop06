@@ -59,6 +59,9 @@ const channels = [
       <a
         href={`#${hash}`}
         class="inline-flex items-center justify-center rounded-xl bg-accent px-5 py-2.5 text-sm font-medium text-on-accent no-underline"
+        data-umami-event="cta-click"
+        data-umami-event-cta="talk"
+        data-umami-event-source="contact"
       >
         {dict.cta.talk}
       </a>
@@ -67,6 +70,8 @@ const channels = [
         target="_blank"
         rel="noopener noreferrer"
         class="glass inline-flex items-center justify-center px-5 py-2.5 text-sm font-medium text-fg no-underline"
+        data-umami-event="schedule-whatsapp"
+        data-umami-event-source="contact"
       >
         {dict.cta.schedule}
       </a>

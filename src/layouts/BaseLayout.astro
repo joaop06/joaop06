@@ -1,6 +1,7 @@
 ---
 import Footer from "../components/shell/Footer.astro";
 import Header from "../components/shell/Header.astro";
+import UmamiAnalytics from "../components/shell/UmamiAnalytics.astro";
 import EasterEggs from "../components/motion/EasterEggs";
 import ScrollRuntime from "../components/motion/ScrollRuntime";
 import TimelineGuide from "../components/motion/TimelineGuide.astro";
@@ -102,7 +103,7 @@ const twitterLocale = lang === "pt" ? "pt_BR" : "en_US";
       type="font/woff2"
       crossorigin
     />
-    <!-- F1.4 anti-FOUC: tema antes da pintura -->
+    <!-- F1.4 / F7.4 anti-FOUC: tema + color-scheme antes da pintura -->
     <script is:inline>
       (function () {
         try {
@@ -116,12 +117,16 @@ const twitterLocale = lang === "pt" ? "pt_BR" : "en_US";
             theme = "dark";
           }
           document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.style.colorScheme = theme;
         } catch {
           document.documentElement.setAttribute("data-theme", "light");
+          document.documentElement.style.colorScheme = "light";
         }
       })();
     </script>
     <title>{title}</title>
+    <!-- F7.1 Umami Cloud (condicional; P4 se sem credenciais) -->
+    <UmamiAnalytics />
   </head>
   <body class="bg-bg text-fg">
     <a class="skip-link" href="#conteudo">{dict.a11y.skipToContent}</a>

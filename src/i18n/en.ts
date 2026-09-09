@@ -177,6 +177,8 @@ export const en = {
       required: "Required field",
       invalidEmail: "Enter a valid email",
       defaultSubject: "Portfolio contact",
+      bodyName: "Name",
+      bodyEmail: "Email",
     },
   },
   faq: {

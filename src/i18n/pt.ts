@@ -178,6 +178,8 @@ export const pt = {
       required: "Campo obrigatório",
       invalidEmail: "Informe um e-mail válido",
       defaultSubject: "Contato pelo portfólio",
+      bodyName: "Nome",
+      bodyEmail: "E-mail",
     },
   },
   faq: {
@@ -222,7 +224,7 @@ export const pt = {
     konamiToast: "Modo integração ativado — teal no máximo por alguns segundos.",
     terminalTitle: "$ whoami",
     terminalBody:
-      "joao@borges:~$ Software Engineer · NestJS / Node.js\nsince may 2023 · Franca, SP · open to CLT & freelance",
+      "joao@borges:~$ Software Engineer · NestJS / Node.js\ndesde maio de 2023 · Franca, SP · aberto a CLT e freelance",
     terminalClose: "exit",
     shortcutsTitle: "Atalhos",
     shortcutsDescription: "Navegação rápida e easter eggs. Esc fecha este painel.",
@@ -234,7 +236,7 @@ export const pt = {
       { keys: "#projetos", action: "Ir para Projetos" },
       { keys: "Konami", action: "Surpresa visual temporária" },
     ],
-    nestFavorite: "favorite stack ★ NestJS",
+    nestFavorite: "stack favorita ★ NestJS",
     coffeeToast: "Café virtual servido. Obrigado por explorar.",
   },
   hello: "Olá",

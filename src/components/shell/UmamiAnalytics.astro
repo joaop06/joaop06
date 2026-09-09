@@ -1,0 +1,21 @@
+---
+/**
+ * F7.1 — Umami Cloud (privacy-friendly, sem cookies de ads).
+ * Só injeta se PUBLIC_UMAMI_WEBSITE_ID + PUBLIC_UMAMI_SRC estiverem definidos (P4).
+ * data-do-not-track: respeita DNT do browser.
+ */
+const websiteId = import.meta.env.PUBLIC_UMAMI_WEBSITE_ID?.trim() ?? "";
+const src = import.meta.env.PUBLIC_UMAMI_SRC?.trim() ?? "";
+const enabled = Boolean(websiteId && src);
+---
+
+{
+  enabled ? (
+    <script
+      defer
+      src={src}
+      data-website-id={websiteId}
+      data-do-not-track="true"
+    />
+  ) : null
+}

@@ -20,19 +20,31 @@ const projectsHref = sectionHref(locale, hashProjects);
 const scheduleHref = whatsappScheduleUrl(dict.hero.whatsappMessage);
 
 const ctas = [
-  { href: talkHref, label: dict.cta.talk, variant: "primary" as const },
-  { href: projectsHref, label: dict.cta.projects, variant: "glass" as const },
+  {
+    href: talkHref,
+    label: dict.cta.talk,
+    variant: "primary" as const,
+    trackId: "talk" as const,
+  },
+  {
+    href: projectsHref,
+    label: dict.cta.projects,
+    variant: "glass" as const,
+    trackId: "projects" as const,
+  },
   {
     href: contact.cvPath,
     label: dict.cta.cv,
     variant: "glass" as const,
     download: true,
+    trackId: "cv" as const,
   },
   {
     href: scheduleHref,
     label: dict.cta.schedule,
     variant: "glass" as const,
     external: true,
+    trackId: "schedule" as const,
   },
 ];
 ---

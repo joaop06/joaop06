@@ -19,6 +19,7 @@ function readTheme(): Theme {
 
 function applyTheme(theme: Theme) {
   document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.style.colorScheme = theme;
   try {
     localStorage.setItem("theme", theme);
   } catch {

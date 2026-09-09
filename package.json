@@ -15,6 +15,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "analyze": "ANALYZE=1 astro build",
+    "validate:links": "node scripts/validate-links.mjs",
     "lighthouse": "lighthouse http://127.0.0.1:4321/pt --chrome-flags='--headless --no-sandbox' --output=json --output-path=./lighthouse-report.json --quiet"
   },
   "dependencies": {

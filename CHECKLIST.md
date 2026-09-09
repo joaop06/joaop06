@@ -650,14 +650,14 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 #### Tasks
 
-- [ ] **F7.1** Integrar Umami Cloud (script com website id); sem cookies de ads; respeitar DNT se a plataforma permitir configuração.
-- [ ] **F7.2** Eventos opcionais: clique CTA, download CV, submit form (se Umami custom events no plano free).
-- [ ] **F7.3** Validar todos os `mailto:`, WhatsApp, Instagram, LinkedIn, GitHub, projetos.
-- [ ] **F7.4** Dark mode persistido + anti-FOUC OK em hard refresh.
-- [ ] **F7.5** Revisão i18n completa (datas, aria-labels, alt texts, meta).
-- [ ] **F7.6** Passar lista de easter eggs e marcar quais ficam on por default.
-- [ ] **F7.7** Smoke manual: desktop Chrome/Firefox + mobile viewport; teclado only; leitor de tela spot-check (VoiceOver/NVDA se disponível).
-- [ ] **F7.8** Substituir placeholders de copy óbvios (“lorem”, “em breve” indevido) — CV PDF pode permanecer placeholder até arquivo real.
+- [x] **F7.1** Integrar Umami Cloud (script com website id); sem cookies de ads; respeitar DNT se a plataforma permitir configuração.
+- [x] **F7.2** Eventos opcionais: clique CTA, download CV, submit form (se Umami custom events no plano free).
+- [x] **F7.3** Validar todos os `mailto:`, WhatsApp, Instagram, LinkedIn, GitHub, projetos.
+- [x] **F7.4** Dark mode persistido + anti-FOUC OK em hard refresh.
+- [x] **F7.5** Revisão i18n completa (datas, aria-labels, alt texts, meta).
+- [x] **F7.6** Passar lista de easter eggs e marcar quais ficam on por default.
+- [x] **F7.7** Smoke manual: desktop Chrome/Firefox + mobile viewport; teclado only; leitor de tela spot-check (VoiceOver/NVDA se disponível).
+- [x] **F7.8** Substituir placeholders de copy óbvios (“lorem”, “em breve” indevido) — CV PDF pode permanecer placeholder até arquivo real.
 - [ ] **F7.9** Confirmar produção em `https://joaoborges-dev.vercel.app`.
 - [ ] **F7.10** Checklist Lighthouse final pós-deploy (cache CDN quente).
 
@@ -671,6 +671,10 @@ Hashes e paths de seção devem sincronizar (deep link abre na seção correta a
 
 - [ ] Fase 7 concluída — **v1 completa**
 
+> **Bloqueios externos (sessão Fase 7):**  
+> - **P4 / Umami:** integração pronta; pageviews reais exigem `PUBLIC_UMAMI_WEBSITE_ID` + `PUBLIC_UMAMI_SRC` na Vercel.  
+> - **F7.9 / F7.10 / F0.9:** `joaoborges-dev.vercel.app` responde `DEPLOYMENT_NOT_FOUND` — deploy Vercel ainda não publicado; Lighthouse final pós-CDN fica pendente.  
+> - **P5:** defaults dos eggs definidos em `EASTER_EGGS.ts`; curadoria final do autor permanece follow-up.
 ---
 
 ## 6. Diretrizes transversais (todas as fases)

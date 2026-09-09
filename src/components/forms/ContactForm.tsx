@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { contact } from "@/data/contact";
+import { trackUmami } from "@/lib/umami";
 
 export type ContactFormLabels = {
   name: string;
@@ -14,6 +15,9 @@ export type ContactFormLabels = {
   required: string;
   invalidEmail: string;
   defaultSubject: string;
+  /** F7.5 — rótulos do corpo mailto alinhados ao locale */
+  bodyName: string;
+  bodyEmail: string;
 };
 
 type ContactFormProps = {
@@ -72,14 +76,15 @@ export function ContactForm({ labels }: ContactFormProps) {
   function onSubmit(data: FormValues) {
     const subject = data.subject || labels.defaultSubject;
     const body = [
-      `Nome: ${data.name}`,
-      `E-mail: ${data.email}`,
+      `${labels.bodyName}: ${data.name}`,
+      `${labels.bodyEmail}: ${data.email}`,
       "",
       data.message,
     ].join("\n");
 
     const href = `mailto:${contact.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
+    trackUmami("form-submit", { channel: "mailto" });
     setShowMailtoHint(false);
     window.location.href = href;
 
