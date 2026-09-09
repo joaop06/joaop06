@@ -88,7 +88,7 @@ const ctas = [
 
     {/* F4/F5 — Órbita; idle + import diferido do Three (F5.3) */}
     <div
-      class="glass relative aspect-[4/3] w-full min-h-[220px] overflow-hidden lg:min-h-[320px]"
+      class="glass relative aspect-[4/3] w-full min-h-[260px] overflow-hidden lg:min-h-[360px]"
       data-hero-3d-slot
     >
       <div
@@ -96,7 +96,13 @@ const ctas = [
         aria-hidden="true"
       >
       </div>
-      <HeroScene client:idle label={dict.a11y.heroVisual} />
+      <HeroScene
+        client:idle
+        label={dict.a11y.heroVisual}
+        orbitNodes={dict.hero.orbitNodes}
+        dismissLabel={dict.hero.orbitDismiss}
+        listLabel={dict.hero.orbitListLabel}
+      />
     </div>
   </div>
 </section>

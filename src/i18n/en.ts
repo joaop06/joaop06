@@ -46,6 +46,30 @@ export const en = {
     location: "Franca, São Paulo, Brazil",
     whatsappMessage:
       "Hi João Pedro, I saw your portfolio and would like to schedule a call.",
+    orbitListLabel: "Orbit integrations",
+    orbitDismiss: "Dismiss detail",
+    orbitNodes: {
+      api: {
+        title: "API",
+        blurb: "HTTP/REST contracts and gateways that connect clients to the core.",
+      },
+      db: {
+        title: "DB",
+        blurb: "MySQL, Firebird, and TypeORM/Sequelize — consistent, migratable data.",
+      },
+      queue: {
+        title: "Queue",
+        blurb: "RabbitMQ and messaging for async, decoupled workflows.",
+      },
+      commerce: {
+        title: "Commerce",
+        blurb: "Order, payment, and catalog integrations with external systems.",
+      },
+      erp: {
+        title: "ERP",
+        blurb: "Bridges to ERPs and legacy internal systems, built for resilience.",
+      },
+    },
   },
   about: {
     title: "About",

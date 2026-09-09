@@ -1,49 +1,43 @@
 /**
- * Canvas R3F do hero (F4.4–F4.6 / F5.9).
- * frameloop demand + invalidate ~20fps quando visível (evita main-thread thrash).
+ * Canvas R3F do hero — frameloop always quando visível, never offscreen.
+ * Qualidade via useRenderTier (DPR / AA / MSAA downstream).
  */
-import { Canvas, useThree } from "@react-three/fiber";
-import { useEffect, useRef, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { useEffect, useRef } from "react";
+import * as THREE from "three";
+import { useHeroVisibility } from "./hooks/useHeroVisibility";
+import { useRenderTier } from "./hooks/useRenderTier";
 import { OrbitScene } from "./OrbitScene";
 
 type OrbitCanvasProps = {
   className?: string;
+  onReady?: () => void;
 };
 
-function FramePacer({ active }: { active: boolean }) {
-  const invalidate = useThree((s) => s.invalidate);
+function ReadySignal({ onReady }: { onReady?: () => void }) {
+  const fired = useRef(false);
   useEffect(() => {
-    if (!active) return;
-    const id = window.setInterval(() => invalidate(), 50);
-    return () => window.clearInterval(id);
-  }, [active, invalidate]);
+    if (fired.current || !onReady) return;
+    fired.current = true;
+    const id = requestAnimationFrame(() => onReady());
+    return () => cancelAnimationFrame(id);
+  }, [onReady]);
   return null;
 }
 
-export default function OrbitCanvas({ className }: OrbitCanvasProps) {
+export default function OrbitCanvas({ className, onReady }: OrbitCanvasProps) {
   const hostRef = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(true);
-
-  useEffect(() => {
-    const el = hostRef.current;
-    if (!el) return;
-    const io = new IntersectionObserver(
-      ([entry]) => {
-        setVisible(entry.isIntersecting && entry.intersectionRatio > 0.05);
-      },
-      { threshold: [0, 0.05, 0.25, 0.5, 1] },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
+  const visible = useHeroVisibility(hostRef);
+  const tier = useRenderTier();
 
   return (
-    <div ref={hostRef} className={className}>
+    <div ref={hostRef} className={`${className ?? ""} pointer-events-none`}>
       <Canvas
-        dpr={[1, 1.25]}
-        frameloop="demand"
+        key={tier.tier}
+        dpr={tier.dpr}
+        frameloop={visible ? "always" : "never"}
         gl={{
-          antialias: false,
+          antialias: tier.antialias,
           alpha: true,
           powerPreference: "high-performance",
           stencil: false,
@@ -51,13 +45,19 @@ export default function OrbitCanvas({ className }: OrbitCanvasProps) {
         }}
         camera={{ position: [0, 0.35, 4.2], fov: 42, near: 0.1, far: 40 }}
         style={{ width: "100%", height: "100%", touchAction: "pan-y" }}
+        className="pointer-events-auto"
         onCreated={({ gl, scene }) => {
           gl.setClearColor(0x000000, 0);
+          gl.outputColorSpace = THREE.SRGBColorSpace;
+          gl.toneMapping = tier.bloom
+            ? THREE.NoToneMapping
+            : THREE.ACESFilmicToneMapping;
+          gl.toneMappingExposure = 1;
           scene.background = null;
         }}
       >
-        <FramePacer active={visible} />
-        <OrbitScene />
+        <ReadySignal onReady={onReady} />
+        <OrbitScene tier={tier} />
       </Canvas>
     </div>
   );

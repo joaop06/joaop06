@@ -1,6 +1,6 @@
 /**
- * Fallback estático da metáfora Órbita de Integrações (F4.8).
- * Usado com reduced-motion, WebGL indisponível ou falha de carregamento.
+ * Fallback estático da metáfora Órbita de Integrações.
+ * Silhuetas alinhadas aos nós hard-surface (api/db/queue/commerce/erp).
  * Ownership: CSS/SVG — sem Motion/GSAP neste nó.
  */
 type HeroFallbackProps = {
@@ -17,66 +17,132 @@ export function HeroFallback({ className }: HeroFallbackProps) {
       aria-hidden="true"
     >
       <defs>
-        <radialGradient id="hero-orbit-core" cx="50%" cy="45%" r="45%">
-          <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.35" />
+        <radialGradient id="hero-orbit-core" cx="50%" cy="42%" r="42%">
+          <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.4" />
+          <stop offset="55%" stopColor="var(--accent)" stopOpacity="0.08" />
           <stop offset="100%" stopColor="var(--accent)" stopOpacity="0" />
         </radialGradient>
+        <linearGradient id="hero-glass" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.35" />
+          <stop offset="100%" stopColor="var(--bg-elevated)" stopOpacity="0.9" />
+        </linearGradient>
       </defs>
       <rect width="400" height="300" fill="url(#hero-orbit-core)" />
-      {/* Arcs */}
+
+      {/* Rings — 1 solid + dashed feel */}
       <ellipse
         cx="200"
-        cy="150"
-        rx="118"
-        ry="72"
+        cy="140"
+        rx="128"
+        ry="78"
+        stroke="var(--accent)"
+        strokeOpacity="0.32"
+        strokeWidth="2"
+      />
+      <ellipse
+        cx="200"
+        cy="140"
+        rx="98"
+        ry="58"
         stroke="var(--accent)"
         strokeOpacity="0.22"
-        strokeWidth="1"
+        strokeWidth="1.5"
+        strokeDasharray="6 5"
+        transform="rotate(-22 200 140)"
       />
       <ellipse
         cx="200"
-        cy="150"
-        rx="88"
+        cy="140"
+        rx="148"
         ry="52"
         stroke="var(--accent)"
-        strokeOpacity="0.18"
-        strokeWidth="1"
-        transform="rotate(-18 200 150)"
+        strokeOpacity="0.16"
+        strokeWidth="1.5"
+        strokeDasharray="4 6"
+        transform="rotate(28 200 140)"
       />
-      {/* Spokes */}
+
+      {/* Energy spokes — thicker */}
       <path
-        d="M200 150 L110 108 M200 150 L290 98 M200 150 L312 168 M200 150 L248 220 M200 150 L128 210"
+        d="M200 140 L108 102 M200 140 L292 92 M200 140 L322 158 M200 140 L252 228 M200 140 L118 218"
         stroke="var(--accent)"
-        strokeOpacity="0.28"
-        strokeWidth="1"
+        strokeOpacity="0.38"
+        strokeWidth="2"
+        strokeLinecap="round"
       />
-      {/* Core glass */}
-      <rect
-        x="168"
-        y="118"
-        width="64"
-        height="64"
-        rx="16"
-        fill="color-mix(in oklab, var(--bg-elevated) 80%, transparent)"
+
+      {/* Core shell + inner */}
+      <polygon
+        points="200,96 238,116 238,164 200,184 162,164 162,116"
+        fill="url(#hero-glass)"
         stroke="var(--border-glass, var(--accent))"
-        strokeOpacity="0.55"
-        strokeWidth="1.25"
+        strokeOpacity="0.7"
+        strokeWidth="1.5"
+      />
+      <polygon
+        points="200,118 218,130 218,150 200,162 182,150 182,130"
+        fill="var(--accent)"
+        fillOpacity="0.45"
+      />
+
+      {/* Node_api — faceted diamond */}
+      <polygon
+        points="108,88 118,78 128,88 118,102"
+        fill="var(--accent)"
+        fillOpacity="0.62"
+      />
+      <circle cx="118" cy="88" r="3" fill="var(--accent)" fillOpacity="0.9" />
+
+      {/* Node_db — stacked disks */}
+      <g fill="var(--accent)" fillOpacity="0.55">
+        <rect x="284" y="80" width="16" height="5" rx="2" />
+        <rect x="284" y="88" width="16" height="5" rx="2" />
+        <rect x="284" y="96" width="16" height="5" rx="2" />
+      </g>
+
+      {/* Node_queue — slotted cube */}
+      <rect
+        x="310"
+        y="148"
+        width="16"
+        height="16"
+        rx="2"
+        fill="var(--accent)"
+        fillOpacity="0.52"
       />
       <rect
-        x="180"
-        y="130"
-        width="40"
-        height="40"
-        rx="10"
-        fill="var(--accent)"
-        fillOpacity="0.18"
+        x="314"
+        y="153"
+        width="8"
+        height="6"
+        rx="1"
+        fill="var(--bg-elevated)"
+        fillOpacity="0.7"
       />
-      {/* Orbit nodes */}
-      <rect x="98" y="96" width="14" height="14" rx="3" fill="var(--accent)" fillOpacity="0.55" />
-      <rect x="282" y="86" width="12" height="12" rx="3" fill="var(--accent)" fillOpacity="0.45" />
-      <circle cx="318" cy="168" r="7" fill="var(--accent)" fillOpacity="0.5" />
-      <rect x="240" y="212" width="13" height="13" rx="3" fill="var(--accent)" fillOpacity="0.42" />
-      <circle cx="122" cy="214" r="6.5" fill="var(--accent)" fillOpacity="0.48" />
+
+      {/* Node_commerce — prism + tag */}
+      <polygon
+        points="248,228 258,208 268,228"
+        fill="var(--accent)"
+        fillOpacity="0.5"
+      />
+      <rect
+        x="262"
+        y="214"
+        width="10"
+        height="6"
+        rx="1"
+        fill="var(--accent)"
+        fillOpacity="0.75"
+        transform="rotate(-20 267 217)"
+      />
+
+      {/* Node_erp — hub with ports */}
+      <circle cx="118" cy="216" r="8" fill="var(--accent)" fillOpacity="0.55" />
+      <circle cx="118" cy="208" r="2.5" fill="var(--accent)" fillOpacity="0.85" />
+      <circle cx="126" cy="216" r="2.5" fill="var(--accent)" fillOpacity="0.85" />
+      <circle cx="110" cy="216" r="2.5" fill="var(--accent)" fillOpacity="0.85" />
+      <circle cx="118" cy="224" r="2.5" fill="var(--accent)" fillOpacity="0.85" />
     </svg>
   );
 }
