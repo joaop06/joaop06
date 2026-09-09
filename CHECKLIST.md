@@ -751,16 +751,26 @@ Deltatec — Assistência Técnica
 
 A v1 só está completa quando **todas** as fases 0–7 estiverem marcadas e:
 
-1. Conteúdo §1 publicado em pt e en.
-2. Timeline fluida + motion stack sem conflitos.
-3. Hero 3D com fallback.
-4. Lighthouse nas metas §F5.8.
-5. SEO + `llms.txt` + mirror markdown.
-6. Umami ativo em produção.
-7. URL `https://joaoborges-dev.vercel.app` estável.
-8. CTAs, CV, contato fixo + form mailto funcionando.
-9. Tema claro default + escuro.
-10. Easter eggs implementados e listados para curadoria.
+- [x] **§8.1** Conteúdo §1 publicado em pt e en.
+- [x] **§8.2** Timeline fluida + motion stack sem conflitos.
+- [x] **§8.3** Hero 3D com fallback.
+- [x] **§8.4** Lighthouse nas metas §F5.8 (revalidado em `astro preview` / porta 4173 — mobile Perf 99, desktop Perf 100; A11y/BP/SEO 100).
+- [x] **§8.5** SEO + `llms.txt` + mirror markdown.
+- [ ] **§8.6** Umami ativo em produção.
+- [ ] **§8.7** URL `https://joaoborges-dev.vercel.app` estável.
+- [x] **§8.8** CTAs, CV, contato fixo + form mailto funcionando.
+- [x] **§8.9** Tema claro default + escuro.
+- [x] **§8.10** Easter eggs implementados e listados para curadoria (`EASTER_EGGS.ts`; README intocado).
+
+#### Done
+
+- [ ] §8 / v1 go-live completa (exige §8.6–§8.7 + F0.9 / F7.9 / F7.10)
+
+> **Status sessão Fase 8 (auditoria local, sem deploy):**  
+> - **Código-completa localmente** para §8.1–§8.5 e §8.8–§8.10.  
+> - **§8.6 / P4:** integração Umami pronta; pageviews em produção exigem `PUBLIC_UMAMI_WEBSITE_ID` + `PUBLIC_UMAMI_SRC` na Vercel.  
+> - **§8.7 / F0.9 / F7.9 / F7.10:** `joaoborges-dev.vercel.app` responde `DEPLOYMENT_NOT_FOUND` — deploy ainda não publicado; Lighthouse pós-CDN pendente.  
+> - Scripts `lighthouse` / `lighthouse:mobile` / `lighthouse:desktop` apontam para preview `4173` (não `astro dev`).
 
 ---
 

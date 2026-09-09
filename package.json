@@ -16,7 +16,9 @@
     "format:check": "prettier --check .",
     "analyze": "ANALYZE=1 astro build",
     "validate:links": "node scripts/validate-links.mjs",
-    "lighthouse": "lighthouse http://127.0.0.1:4321/pt --chrome-flags='--headless --no-sandbox' --output=json --output-path=./lighthouse-report.json --quiet"
+    "lighthouse": "lighthouse http://127.0.0.1:4173/pt --chrome-flags='--headless --no-sandbox' --output=json --output-path=./lighthouse-report.json --quiet",
+    "lighthouse:desktop": "lighthouse http://127.0.0.1:4173/pt --preset=desktop --chrome-flags='--headless --no-sandbox' --output=json --output-path=./lighthouse-desktop.json --quiet",
+    "lighthouse:mobile": "lighthouse http://127.0.0.1:4173/pt --form-factor=mobile --screenEmulation.mobile --chrome-flags='--headless --no-sandbox' --output=json --output-path=./lighthouse-mobile.json --quiet"
   },
   "dependencies": {
     "@astrojs/react": "^6.0.5",
