@@ -43,7 +43,7 @@ export default function OrbitCanvas({ className, onReady }: OrbitCanvasProps) {
           stencil: false,
           depth: true,
         }}
-        camera={{ position: [0, 0.35, 4.2], fov: 42, near: 0.1, far: 40 }}
+        camera={{ position: [0.15, 0.28, 3.85], fov: 40, near: 0.1, far: 40 }}
         style={{ width: "100%", height: "100%", touchAction: "pan-y" }}
         className="pointer-events-auto"
         onCreated={({ gl, scene }) => {

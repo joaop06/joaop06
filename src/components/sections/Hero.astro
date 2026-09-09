@@ -61,9 +61,9 @@ const ctas = [
   </div>
 
   <div
-    class="container-site grid items-center gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-12"
+    class="container-site relative flex min-h-[min(85vh,52rem)] flex-col justify-center"
   >
-    <div class="min-w-0">
+    <div class="relative z-10 max-w-xl lg:w-[min(100%,28rem)] xl:w-[min(100%,32rem)]">
       <p class="m-0 text-sm font-medium tracking-wide text-fg-muted">
         {dict.hero.location}
       </p>
@@ -86,16 +86,11 @@ const ctas = [
       <HeroCtas client:idle items={ctas} />
     </div>
 
-    {/* F4/F5 — Órbita; idle + import diferido do Three (F5.3) */}
+    {/* F4/F5 — Órbita bleed; idle + import diferido do Three (F5.3) */}
     <div
-      class="glass relative aspect-[4/3] w-full min-h-[260px] overflow-hidden lg:min-h-[360px]"
+      class="hero-3d-slot relative mt-8 h-[min(42vh,280px)] w-full lg:absolute lg:inset-y-0 lg:end-0 lg:mt-0 lg:h-auto lg:w-[min(62%,42rem)] xl:w-[min(65%,48rem)]"
       data-hero-3d-slot
     >
-      <div
-        class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,color-mix(in_oklab,var(--accent)_18%,transparent),transparent_62%)]"
-        aria-hidden="true"
-      >
-      </div>
       <HeroScene
         client:idle
         label={dict.a11y.heroVisual}
@@ -106,3 +101,12 @@ const ctas = [
     </div>
   </div>
 </section>
+
+<style>
+  /* Bleed só em desktop — slot absolute; painel DOM fora da máscara */
+  @media (min-width: 1024px) {
+    .hero-3d-slot {
+      margin-inline-end: -2rem;
+    }
+  }
+</style>

@@ -93,19 +93,19 @@ export default function HeroScene({
     <OrbitSelectionProvider>
       <div ref={rootRef} className="relative h-full w-full" data-hero-3d>
         <div
-          className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${
+          className={`hero-3d-visual absolute inset-0 h-full w-full transition-opacity duration-500 ${
             showFallback ? "opacity-100" : "opacity-0"
           }`}
           role="img"
           aria-label={label}
           aria-hidden={!showFallback}
         >
-          <HeroFallback className="h-full w-full" />
+          <HeroFallback className="h-full w-full object-contain" />
         </div>
 
         {mode === "webgl" && Canvas && (
           <div
-            className={`absolute inset-0 h-full w-full transition-opacity duration-500 ${
+            className={`hero-3d-visual absolute inset-0 h-full w-full transition-opacity duration-500 ${
               canvasReady ? "opacity-100" : "opacity-0"
             }`}
             role="img"

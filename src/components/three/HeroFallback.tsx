@@ -24,10 +24,17 @@ export function HeroFallback({ className }: HeroFallbackProps) {
         </radialGradient>
         <linearGradient id="hero-glass" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.35" />
-          <stop offset="100%" stopColor="var(--bg-elevated)" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.08" />
         </linearGradient>
       </defs>
-      <rect width="400" height="300" fill="url(#hero-orbit-core)" />
+      {/* Glow suave — sem rect de painel; fundo = página */}
+      <ellipse
+        cx="200"
+        cy="140"
+        rx="160"
+        ry="110"
+        fill="url(#hero-orbit-core)"
+      />
 
       {/* Rings — 1 solid + dashed feel */}
       <ellipse

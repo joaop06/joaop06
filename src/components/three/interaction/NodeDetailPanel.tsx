@@ -36,7 +36,7 @@ export function NodeDetailPanel({
 
   return (
     <div
-      className="pointer-events-auto absolute inset-x-0 bottom-0 z-10 flex flex-col gap-2 p-3"
+      className="pointer-events-auto absolute inset-x-0 bottom-0 z-10 flex flex-col items-start gap-2 p-2 sm:p-3 lg:inset-x-auto lg:start-[18%] lg:end-2 lg:max-w-sm"
       onPointerLeave={() => setHoveredId(null)}
     >
       <div
@@ -55,11 +55,12 @@ export function NodeDetailPanel({
               aria-selected={selected || preview}
               className={[
                 "rounded-md border px-2 py-1 font-mono text-xs transition-colors",
+                "backdrop-blur-sm",
                 "hover:border-accent hover:bg-accent/15 hover:text-fg",
                 "focus-visible:border-accent focus-visible:bg-accent/15 focus-visible:text-fg",
                 preview || selected
                   ? "border-accent bg-accent/15 text-fg"
-                  : "border-border-glass bg-bg-elevated/80 text-fg-muted",
+                  : "border-border-glass/60 bg-bg/60 text-fg-muted",
               ].join(" ")}
               onPointerEnter={() => setHoveredId(id)}
               onFocus={() => setHoveredId(id)}
@@ -77,7 +78,7 @@ export function NodeDetailPanel({
         aria-live="polite"
         aria-hidden={!active}
         className={[
-          "glass min-h-[4.5rem] rounded-lg px-3 py-2 text-left",
+          "glass min-h-[4.5rem] w-full rounded-lg px-3 py-2 text-left",
           active ? "visible" : "invisible",
         ].join(" ")}
       >
